@@ -53,3 +53,51 @@ export async function getLatestYouTubeVideo(): Promise<YouTubeVideoInfo | null> 
     return null;
   }
 }
+
+export interface YouTubeRecentVideo {
+  videoId: string;
+  title: string;
+  description: string;
+  thumbnailUrl: string;
+  publishedAt: string;
+}
+
+export async function getRecentYouTubeVideos(maxResults: number = 2): Promise<YouTubeRecentVideo[]> {
+  const apiKey = process.env.YOUTUBE_API_KEY;
+  const channelId = process.env.YOUTUBE_CHANNEL_ID;
+
+  if (!apiKey || !channelId) {
+    return [];
+  }
+
+  // To get the channel's uploads, we replace UC with UU
+  const uploadsPlaylistId = channelId.replace(/^UC/, 'UU');
+
+  try {
+    const url = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${uploadsPlaylistId}&maxResults=${maxResults}&key=${apiKey}`;
+    
+    const res = await fetch(url, { next: { revalidate: 900 } }); // 15 mins cache
+    
+    if (!res.ok) {
+      console.error('YouTube API error for recent videos:', await res.text());
+      return [];
+    }
+    
+    const data = await res.json();
+    
+    if (data.items) {
+      return data.items.map((item: any) => ({
+        videoId: item.snippet.resourceId.videoId,
+        title: item.snippet.title,
+        description: item.snippet.description,
+        thumbnailUrl: item.snippet.thumbnails?.high?.url || item.snippet.thumbnails?.medium?.url || item.snippet.thumbnails?.default?.url,
+        publishedAt: item.snippet.publishedAt,
+      }));
+    }
+    
+    return [];
+  } catch (error) {
+    console.error('Failed to fetch recent YouTube videos:', error);
+    return [];
+  }
+}
