@@ -111,7 +111,7 @@ export default function VisitUsSection({ locale }: { locale: string }) {
                     Glendale, AZ 85301
                   </p>
                   <a 
-                    href="https://maps.google.com/?q=6331+W+Lamar+Rd,+Glendale,+AZ+85301" 
+                    href="https://maps.app.goo.gl/JdcbwqtThSHkqzVB9" 
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-block mt-3 text-accent-gold font-bold uppercase tracking-widest text-sm hover:text-primary-navy transition-colors"

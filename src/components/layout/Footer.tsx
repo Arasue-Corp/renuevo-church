@@ -27,7 +27,7 @@ export default function Footer() {
             </h3>
             <ul className="space-y-3 text-sm">
               <li>
-                <a href="https://maps.app.goo.gl/GUSPAURVpwZ3v3n79" target="_blank" rel="noopener noreferrer" className="hover:text-accent-gold transition flex items-start gap-2">
+                <a href="https://maps.app.goo.gl/JdcbwqtThSHkqzVB9" target="_blank" rel="noopener noreferrer" className="hover:text-accent-gold transition flex items-start gap-2">
                   <span>📍</span> 
                   <span className="leading-snug">6331 W Lamar Rd,<br/>Glendale, AZ 85301</span>
                 </a>
