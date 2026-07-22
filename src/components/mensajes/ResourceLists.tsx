@@ -1,6 +1,6 @@
 'use client';
 import { Play, BookOpen } from 'lucide-react';
-import { motion } from 'motion/react';
+import { motion, Variants } from 'motion/react';
 import Image from 'next/image';
 
 export function ResourceLists({ 
@@ -16,14 +16,14 @@ export function ResourceLists({
 }) {
   const isEs = locale === 'es';
 
-  const container = {
+  const container: Variants = {
     hidden: {},
     visible: {
       transition: { staggerChildren: 0.1 }
     }
   };
 
-  const item = {
+  const item: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } }
   };

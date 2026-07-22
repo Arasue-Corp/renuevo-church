@@ -1,17 +1,17 @@
 'use client';
-import { motion } from 'motion/react';
+import { motion, Variants } from 'motion/react';
 
 export default function MinistriesList({ locale }: { locale: string }) {
   const isEs = locale === 'es';
 
-  const container = {
+  const container: Variants = {
     hidden: {},
     visible: {
       transition: { staggerChildren: 0.1 }
     }
   };
 
-  const item = {
+  const item: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } }
   };
