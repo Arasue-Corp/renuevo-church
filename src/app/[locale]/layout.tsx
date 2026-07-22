@@ -33,7 +33,7 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <body className={`${inter.variable} ${outfit.variable} font-sans antialiased bg-stone-50 text-stone-900 flex flex-col min-h-screen selection:bg-blue-600 selection:text-white`}>
-        <NextIntlClientProvider messages={messages}>
+        <NextIntlClientProvider messages={messages} locale={locale}>
           <Navbar />
           <main className="flex-grow">
             {children}
