@@ -1,5 +1,6 @@
 import { BookOpen, Users, Heart } from 'lucide-react';
 import CinematicHeader from '@/components/layout/CinematicHeader';
+import StaffSection from '@/components/nosotros/StaffSection';
 
 export async function generateMetadata({params}: {params: Promise<{locale: string}>}) {
   const { locale } = await params;
@@ -57,6 +58,8 @@ export default async function AboutPage({params}: {params: Promise<{locale: stri
           </div>
         </div>
       </section>
+
+      <StaffSection isEs={isEs} />
 
       <section className="py-32 border-t border-stone-200 relative">
         <div className="absolute inset-0 bg-primary-navy/5 pointer-events-none" />
