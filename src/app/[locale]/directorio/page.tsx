@@ -37,7 +37,7 @@ export default async function DirectoryPage({params}: {params: Promise<{locale: 
         contactEmail: 'hello@alexai.cloud',
         website: 'https://www.alexai.cloud',
         logoUrl: '/directorio-logos/logo-alex.png',
-        dominantColor: '#e0f2fe' // Fallback color that fits Alex AI blue
+        dominantColor: 'transparent' // Let the logo's own background shine
       },
       { 
         _id: 'arasue-horizon', 
@@ -50,7 +50,7 @@ export default async function DirectoryPage({params}: {params: Promise<{locale: 
         contactEmail: 'hello@arasue.com', 
         website: 'https://www.arasue.com',
         logoUrl: '/directorio-logos/logo-arasue.png',
-        dominantColor: '#fef3c7' // Fallback color that fits Arasue gold/sand
+        dominantColor: 'transparent' // Let the logo's own background shine
       }
     ];
   }
@@ -71,16 +71,16 @@ export default async function DirectoryPage({params}: {params: Promise<{locale: 
             <div key={biz._id} className="bg-white p-10 rounded-2xl border border-stone-200 shadow-xl shadow-stone-200/50 hover:shadow-2xl hover:border-accent-gold/50 transition-all duration-300 flex flex-col h-full group">
               <div className="flex items-center gap-6 mb-8">
                 <div 
-                  className="w-20 h-20 rounded-xl overflow-hidden flex-shrink-0 flex items-center justify-center border border-stone-200 transition-colors p-2"
+                  className="w-28 h-28 rounded-2xl overflow-hidden flex-shrink-0 flex items-center justify-center border border-stone-200 transition-colors"
                   style={{ backgroundColor: biz.dominantColor || '#F2D3AC' }} // Fallback to primary-sand hex
                 >
                   {biz.logoUrl ? (
                     <img src={biz.logoUrl} alt={biz.name} className="w-full h-full object-contain" />
                   ) : (
-                    <Briefcase className="w-8 h-8 text-primary-navy/40 stroke-[1.5]" />
+                    <Briefcase className="w-10 h-10 text-primary-navy/40 stroke-[1.5]" />
                   )}
                 </div>
-                <div>
+                <div className="flex-1">
                   <h3 className="text-2xl font-bold text-primary-navy font-serif leading-tight group-hover:text-accent-gold transition-colors">{biz.name}</h3>
                   <div className="flex flex-wrap gap-2 mt-3">
                     {(isEs ? biz.categories : (biz.categoriesEn || biz.categories))?.map((cat: string, index: number) => (
