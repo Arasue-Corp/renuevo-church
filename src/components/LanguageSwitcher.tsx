@@ -24,16 +24,20 @@ export default function LanguageSwitcher({ isScrolled = false }: { isScrolled?: 
   };
 
   const switchLocale = (targetLocale: string) => {
-    if (optimisticLocale === targetLocale) return;
+    if (optimisticLocale === targetLocale) {
+      console.log("[LanguageSwitcher] Already on", targetLocale);
+      return;
+    }
     
     // Instantly move the pill and change text color for smooth UI feedback
+    console.log("[LanguageSwitcher] Switching to", targetLocale);
     setOptimisticLocale(targetLocale);
     
-    // Use hard navigation to guarantee server returns the fresh translated payload
-    // without running into Next.js App Router client-side cache bugs.
-    // The delay ensures the user sees the pill slide before the page reloads.
     const newPath = getPath(targetLocale);
+    console.log("[LanguageSwitcher] Navigating to", newPath);
+    
     setTimeout(() => {
+      console.log("[LanguageSwitcher] Executing hard reload to", newPath);
       window.location.href = newPath;
     }, 150);
   };
