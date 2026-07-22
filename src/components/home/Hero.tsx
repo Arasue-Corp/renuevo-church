@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import { motion, useScroll, useTransform } from 'motion/react';
+import { motion, useScroll, useTransform, Variants } from 'motion/react';
 import { ArrowDown } from 'lucide-react';
 
 export default function Hero({ locale }: { locale: string }) {
@@ -10,7 +10,7 @@ export default function Hero({ locale }: { locale: string }) {
   const y = useTransform(scrollY, [0, 1000], [0, 400]);
   
   // Cinematic text animation variants
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -21,7 +21,7 @@ export default function Hero({ locale }: { locale: string }) {
     }
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 40, filter: 'blur(10px)' },
     visible: { 
       opacity: 1, 
