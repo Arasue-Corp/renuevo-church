@@ -1,5 +1,6 @@
 'use client';
 import { motion } from 'motion/react';
+import Link from 'next/link';
 import { PlayCircle, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 
@@ -39,14 +40,12 @@ export default function RecentSermons({ locale, sermons }: { locale: string, ser
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
           >
-            <a 
-              href="https://www.youtube.com/@RenuevoChurchorg"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link 
+              href={`/${locale}/mensajes`}
               className="inline-flex items-center justify-center px-8 py-4 bg-primary-navy text-accent-gold hover:bg-stone-800 transition-colors rounded-xl font-bold tracking-widest uppercase text-sm shadow-xl"
             >
-              {isEs ? 'Ver canal de YouTube' : 'View YouTube Channel'}
-            </a>
+              {isEs ? 'Ver todos los mensajes' : 'View all messages'}
+            </Link>
           </motion.div>
         </div>
 
