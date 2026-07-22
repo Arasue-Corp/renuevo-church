@@ -13,7 +13,7 @@ export default async function DirectoryPage({params}: {params: Promise<{locale: 
 
   // Fetch businesses
   const query = `*[_type == "business" && isApproved == true] | order(name asc) {
-    _id, name, category, description, descriptionEn, "logoUrl": logo.asset->url, "dominantColor": logo.asset->metadata.palette.dominant.background, contactEmail, contactPhone, website
+    _id, name, categories, categoriesEn, description, descriptionEn, "logoUrl": logo.asset->url, "dominantColor": logo.asset->metadata.palette.dominant.background, contactEmail, contactPhone, website
   }`;
   
   let businesses = [];
@@ -29,7 +29,8 @@ export default async function DirectoryPage({params}: {params: Promise<{locale: 
       { 
         _id: 'alex-ai', 
         name: 'Alex AI Insurtech', 
-        category: 'Seguros / Insurance', 
+        categories: ['Seguros'], 
+        categoriesEn: ['Insurance'],
         description: 'Soluciones modernas de seguros médicos y de vida. Protegemos tu futuro con planes accesibles y un enfoque tecnológico de primer nivel.', 
         descriptionEn: 'Modern health and life insurance solutions. We protect your future with accessible plans and a top-tier technological approach.', 
         contactPhone: '480-630-9630',
@@ -41,7 +42,8 @@ export default async function DirectoryPage({params}: {params: Promise<{locale: 
       { 
         _id: 'arasue-horizon', 
         name: 'Arasue Horizon', 
-        category: 'Tecnología, Productos, Servicios', 
+        categories: ['Tecnología', 'Productos', 'Servicios'], 
+        categoriesEn: ['Technology', 'Products', 'Services'],
         description: 'Holding tecnológico y operativo. A través de nuestras divisiones Arasue Forge (desarrollo de software) y Arasue Labs (cadena de suministro), construimos la infraestructura del futuro.', 
         descriptionEn: 'Technological and operational holding. Through our divisions Arasue Forge (software development) and Arasue Labs (supply chain), we build the infrastructure of the future.', 
         contactPhone: '480-569-4280', 
@@ -80,9 +82,13 @@ export default async function DirectoryPage({params}: {params: Promise<{locale: 
                 </div>
                 <div>
                   <h3 className="text-2xl font-bold text-primary-navy font-serif leading-tight group-hover:text-accent-gold transition-colors">{biz.name}</h3>
-                  <span className="inline-block px-4 py-1.5 bg-primary-sand text-primary-navy text-xs font-bold tracking-widest uppercase rounded-full mt-3 border border-stone-200">
-                    {biz.category}
-                  </span>
+                  <div className="flex flex-wrap gap-2 mt-3">
+                    {(isEs ? biz.categories : (biz.categoriesEn || biz.categories))?.map((cat: string, index: number) => (
+                      <span key={index} className="inline-block px-3 py-1 bg-primary-sand text-primary-navy text-xs font-bold tracking-widest uppercase rounded-full border border-stone-200">
+                        {cat}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
               
@@ -92,24 +98,22 @@ export default async function DirectoryPage({params}: {params: Promise<{locale: 
               
               <div className="space-y-4 text-sm bg-stone-50 p-6 rounded-xl border border-stone-200">
                 {biz.contactPhone && (
-                  <div className="flex items-center gap-4 text-stone-700">
+                  <a href={`tel:${biz.contactPhone.replace(/[^0-9+]/g, '')}`} className="flex items-center gap-4 text-stone-700 hover:text-accent-gold transition-colors w-fit">
                     <Phone className="w-5 h-5 text-accent-gold stroke-[1.5]" />
                     <span className="font-bold">{biz.contactPhone}</span>
-                  </div>
+                  </a>
                 )}
                 {biz.contactEmail && (
-                  <div className="flex items-center gap-4 text-stone-700">
+                  <a href={`mailto:${biz.contactEmail}`} className="flex items-center gap-4 text-stone-700 hover:text-accent-gold transition-colors w-fit">
                     <Mail className="w-5 h-5 text-accent-gold stroke-[1.5]" />
                     <span className="font-bold truncate">{biz.contactEmail}</span>
-                  </div>
+                  </a>
                 )}
                 {biz.website && (
-                  <div className="flex items-center gap-4 text-primary-navy font-bold">
-                    <Globe className="w-5 h-5 text-accent-gold stroke-[1.5]" />
-                    <a href={biz.website} target="_blank" rel="noopener noreferrer" className="hover:text-accent-gold transition-colors truncate">
-                      {isEs ? 'Visitar sitio web' : 'Visit website'}
-                    </a>
-                  </div>
+                  <a href={biz.website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-primary-navy hover:text-accent-gold transition-colors truncate w-fit">
+                    <Globe className="w-5 h-5 text-accent-gold stroke-[1.5] flex-shrink-0" />
+                    <span className="font-bold truncate">{biz.website.replace(/^https?:\/\/(www\.)?/, '')}</span>
+                  </a>
                 )}
                 {!biz.contactPhone && !biz.contactEmail && !biz.website && (
                   <div className="text-stone-400 text-xs italic font-bold tracking-widest uppercase">

@@ -12,13 +12,23 @@ export const businessType = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'category',
-      title: 'Categoría',
-      type: 'string',
+      name: 'categories',
+      title: 'Categorías (Español)',
+      type: 'array',
+      of: [{ type: 'string' }],
       options: {
-        list: ['Alimentación', 'Servicios Profesionales', 'Salud', 'Construcción', 'Educación', 'Otros'],
+        layout: 'tags',
       },
       validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'categoriesEn',
+      title: 'Categorías (Inglés)',
+      type: 'array',
+      of: [{ type: 'string' }],
+      options: {
+        layout: 'tags',
+      },
     }),
     defineField({
       name: 'description',
