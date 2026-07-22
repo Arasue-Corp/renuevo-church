@@ -45,7 +45,7 @@ export default async function MessagePage({params}: {params: Promise<{locale: st
             </blockquote>
           </div>
           <div className="md:w-1/2 bg-stone-200 h-80 rounded-2xl w-full flex items-center justify-center text-stone-500 overflow-hidden shadow-2xl border border-stone-200">
-             <img src="https://images.unsplash.com/photo-1490288899534-11005b8a6a68?q=80&w=2070&auto=format&fit=crop" alt="Creation" className="w-full h-full object-cover" />
+             <img src="https://images.unsplash.com/photo-1519818177934-29759c55b16f?q=80&w=2070&auto=format&fit=crop" alt="Creation" className="w-full h-full object-cover" />
           </div>
         </div>
 
@@ -65,7 +65,7 @@ export default async function MessagePage({params}: {params: Promise<{locale: st
             </blockquote>
           </div>
           <div className="md:w-1/2 bg-stone-200 h-80 rounded-2xl w-full flex items-center justify-center text-stone-500 overflow-hidden shadow-2xl border border-stone-200">
-             <img src="https://images.unsplash.com/photo-1614088463131-7eec52f63cb5?q=80&w=2070&auto=format&fit=crop" alt="Cross" className="w-full h-full object-cover" />
+             <img src="https://images.unsplash.com/photo-1587321285217-1fcbb4141680?q=80&w=2070&auto=format&fit=crop" alt="Cross" className="w-full h-full object-cover" />
           </div>
         </div>
 
@@ -85,7 +85,7 @@ export default async function MessagePage({params}: {params: Promise<{locale: st
             </blockquote>
           </div>
           <div className="md:w-1/2 bg-stone-200 h-80 rounded-2xl w-full flex items-center justify-center text-stone-500 overflow-hidden shadow-2xl border border-stone-200">
-             <img src="https://images.unsplash.com/photo-1544216898-05b6329c99ec?q=80&w=2070&auto=format&fit=crop" alt="Prayer" className="w-full h-full object-cover" />
+             <img src="https://images.unsplash.com/photo-1501862700950-18382cd41497?q=80&w=2019&auto=format&fit=crop" alt="Prayer" className="w-full h-full object-cover" />
           </div>
         </div>
       </section>
