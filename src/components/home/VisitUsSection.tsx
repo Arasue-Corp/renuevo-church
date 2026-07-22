@@ -87,7 +87,7 @@ export default function VisitUsSection({ locale }: { locale: string }) {
                     {isEs ? 'Domingos a las 10:00 AM y 12:30 PM' : 'Sundays at 10:00 AM and 12:30 PM'}
                   </p>
                   <p className="text-stone-500 mt-1">
-                    {isEs ? 'Servicio Bilingüe (Inglés y Español)' : 'Bilingual Service (English & Spanish)'}
+                    {isEs ? 'Servicio en Español' : 'Spanish Service'}
                   </p>
                 </div>
               </motion.div>
