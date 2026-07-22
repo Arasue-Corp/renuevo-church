@@ -21,8 +21,7 @@ export default function LanguageSwitcher({ isScrolled = false }: { isScrolled?: 
     }
     
     const newPath = segments.join('/') || '/';
-    router.replace(newPath);
-    router.refresh();
+    window.location.href = newPath;
   };
 
   return (
