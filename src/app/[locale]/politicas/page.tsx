@@ -14,7 +14,7 @@ export default async function PrivacyPolicyPage({params}: {params: Promise<{loca
       <CinematicHeader 
         title={isEs ? 'Política de Privacidad' : 'Privacy Policy'}
         subtitle={isEs ? 'Protegiendo tu información y respetando tu privacidad.' : 'Protecting your information and respecting your privacy.'}
-        backgroundImageUrl="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=2070&auto=format&fit=crop"
+        backgroundImageUrl="https://images.unsplash.com/photo-1438232992991-995b7058bbb3?q=80&w=2073&auto=format&fit=crop"
       />
 
       <section className="container mx-auto px-6 max-w-4xl py-20 relative z-10">

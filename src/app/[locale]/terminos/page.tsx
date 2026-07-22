@@ -14,7 +14,7 @@ export default async function TermsPage({params}: {params: Promise<{locale: stri
       <CinematicHeader 
         title={isEs ? 'Términos y Condiciones' : 'Terms and Conditions'}
         subtitle={isEs ? 'Acuerdo legal para el uso de nuestro sitio web.' : 'Legal agreement for the use of our website.'}
-        backgroundImageUrl="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=2070&auto=format&fit=crop"
+        backgroundImageUrl="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop"
       />
 
       <section className="container mx-auto px-6 max-w-4xl py-20 relative z-10">
