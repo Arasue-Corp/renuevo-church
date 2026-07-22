@@ -25,7 +25,11 @@ export default async function Home({params}: {params: Promise<{locale: string}>}
   // Fetch businesses for directory preview
   let businesses = [];
   try {
-    businesses = await client.fetch(`*[_type == "business" && isApproved == true] { categories, categoriesEn }`);
+    businesses = await client.fetch(
+      `*[_type == "business" && isApproved == true] { categories, categoriesEn }`, 
+      {}, 
+      { next: { revalidate: 30 } }
+    );
   } catch (error) {
     console.error("Error fetching businesses:", error);
   }

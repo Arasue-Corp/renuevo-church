@@ -19,7 +19,11 @@ export default async function DirectoryPage({params}: {params: Promise<{locale: 
   
   let businesses = [];
   try {
-    businesses = await client.fetch(query);
+    businesses = await client.fetch(
+      query,
+      {},
+      { next: { revalidate: 30 } }
+    );
   } catch (error) {
     console.error("Error fetching businesses:", error);
   }
