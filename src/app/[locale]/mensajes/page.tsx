@@ -1,4 +1,5 @@
 import { client } from '@/sanity/lib/client';
+import { getRecentYouTubeVideos } from '@/lib/youtube';
 import { ResourceLists } from '@/components/mensajes/ResourceLists';
 import CinematicHeader from '@/components/layout/CinematicHeader';
 
@@ -16,26 +17,14 @@ export default async function ResourcesPage({params}: {params: Promise<{locale: 
     _id, title, titleEn, slug, "imageUrl": featuredImage.asset->url, publishedAt, author
   }`;
   
-  // Fetch Sermons
-  const serQuery = `*[_type == "sermon" && publishedAt <= now()] | order(publishedAt desc)[0...6] {
-    _id, title, titleEn, slug, videoUrl, mainVerse, mainVerseEn, publishedAt
-  }`;
+  // Fetch Sermons from YouTube
+  let sermons = await getRecentYouTubeVideos(8);
 
   let devotionals = [];
-  let sermons = [];
   try {
     devotionals = await client.fetch(devQuery);
-    sermons = await client.fetch(serQuery);
   } catch (error) {
     console.error("Error fetching sanity content:", error);
-  }
-
-  // Placeholder data if none found
-  if (sermons.length === 0) {
-    sermons = [
-      { _id: 's1', title: 'El poder de la gracia', titleEn: 'The power of grace', mainVerse: 'Efesios 2:8 (NTV)', mainVerseEn: 'Ephesians 2:8 (NLT)', publishedAt: new Date().toISOString() },
-      { _id: 's2', title: 'Caminando sobre las aguas', titleEn: 'Walking on water', mainVerse: 'Mateo 14:29 (NTV)', mainVerseEn: 'Matthew 14:29 (NLT)', publishedAt: new Date().toISOString() },
-    ];
   }
 
   return (

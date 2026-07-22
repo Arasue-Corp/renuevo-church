@@ -1,6 +1,7 @@
 'use client';
 import { Play, BookOpen } from 'lucide-react';
 import { motion } from 'motion/react';
+import Image from 'next/image';
 
 export function ResourceLists({ 
   locale, 
@@ -30,43 +31,62 @@ export function ResourceLists({
       {/* Sermons */}
       <section className="py-24 px-6 container mx-auto max-w-7xl relative z-10">
         <h2 className="text-4xl md:text-5xl font-bold mb-16 text-primary-navy border-b-2 pb-6 border-accent-gold inline-block font-serif">
-          {isEs ? 'Últimos Sermones' : 'Latest Sermons'}
+          {isEs ? 'Últimos Servicios' : 'Latest Services'}
         </h2>
         <motion.div 
           variants={container}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
         >
-          {sermons.map((sermon: any) => (
-            <motion.div key={sermon._id} variants={item} className="bg-white p-8 rounded-3xl border border-stone-200 shadow-xl shadow-stone-200/50 hover:shadow-2xl hover:border-accent-gold/50 transition-all duration-300 flex flex-col justify-between group">
-              <div>
-                <p className="text-xs font-bold text-accent-gold mb-4 tracking-widest uppercase">
-                  {new Date(sermon.publishedAt).toLocaleDateString(locale, { year: 'numeric', month: 'long', day: 'numeric' })}
-                </p>
-                <h3 className="text-2xl md:text-3xl font-bold text-primary-navy mb-6 font-serif leading-tight group-hover:text-accent-gold transition-colors">
-                  {isEs ? sermon.title : (sermon.titleEn || sermon.title)}
-                </h3>
-                {(sermon.mainVerse || sermon.mainVerseEn) && (
-                  <blockquote className="border-l-4 border-accent-gold pl-6 text-stone-600 italic font-serif mb-10 text-lg md:text-xl leading-relaxed">
-                    {isEs ? sermon.mainVerse : (sermon.mainVerseEn || sermon.mainVerse)}
-                  </blockquote>
-                )}
-              </div>
-              <div className="mt-auto">
-                {sermon.videoUrl ? (
-                  <a href={sermon.videoUrl} target="_blank" rel="noopener noreferrer" className="relative inline-flex justify-center items-center gap-3 px-8 py-4 bg-primary-navy text-accent-gold rounded-xl font-bold text-sm tracking-widest uppercase hover:bg-stone-800 transition-colors w-full sm:w-auto shadow-md">
-                    <Play className="w-5 h-5" />
-                    <span className="relative z-10">{isEs ? 'Ver Mensaje' : 'Watch Message'}</span>
-                  </a>
+          {sermons.map((sermon: any, idx) => (
+            <motion.div key={sermon.videoId || idx} variants={item} className="bg-white rounded-3xl overflow-hidden border border-stone-200 shadow-xl shadow-stone-200/50 hover:shadow-2xl hover:border-accent-gold/50 transition-all duration-300 flex flex-col group h-full">
+              
+              <div className="w-full aspect-video bg-stone-100 relative overflow-hidden">
+                {sermon.thumbnailUrl ? (
+                  <Image 
+                    src={sermon.thumbnailUrl} 
+                    alt={sermon.title} 
+                    fill 
+                    sizes="(max-width: 768px) 100vw, 25vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105" 
+                  />
                 ) : (
-                  <button className="inline-flex justify-center items-center gap-3 px-8 py-4 bg-stone-100 text-stone-400 rounded-xl font-bold text-sm tracking-widest uppercase cursor-not-allowed w-full sm:w-auto border border-stone-200">
-                    <Play className="w-5 h-5" />
-                    {isEs ? 'Video no disponible' : 'Video unavailable'}
-                  </button>
+                  <div className="absolute inset-0 bg-primary-navy opacity-10" />
+                )}
+                
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80" />
+                
+                {sermon.publishedAt && (
+                  <div className="absolute bottom-3 left-3 z-10 pointer-events-none">
+                    <span className="px-3 py-1 bg-black/60 backdrop-blur-md rounded-full text-white text-[10px] font-bold tracking-widest uppercase">
+                      {new Date(sermon.publishedAt).toLocaleDateString(isEs ? 'es-ES' : 'en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                    </span>
+                  </div>
                 )}
               </div>
+
+              <div className="p-6 flex-grow flex flex-col">
+                <h3 className="text-lg font-bold text-primary-navy mb-3 font-serif leading-tight group-hover:text-accent-gold transition-colors line-clamp-2">
+                  {sermon.title}
+                </h3>
+                
+                <p className="text-stone-600 font-medium text-xs mb-6 flex-grow line-clamp-3 leading-relaxed">
+                  {sermon.description || (isEs ? 'Devocional semanal de Renuevo Church.' : 'Weekly devotional from Renuevo Church.')}
+                </p>
+                
+                <a 
+                  href={`https://www.youtube.com/watch?v=${sermon.videoId}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-auto relative inline-flex justify-center items-center gap-2 px-6 py-3 bg-primary-navy text-accent-gold rounded-xl font-bold text-xs tracking-widest uppercase hover:bg-stone-800 transition-colors shadow-md w-full"
+                >
+                  <Play className="w-4 h-4" />
+                  <span className="relative z-10">{isEs ? 'Ver Mensaje' : 'Watch'}</span>
+                </a>
+              </div>
+
             </motion.div>
           ))}
         </motion.div>
