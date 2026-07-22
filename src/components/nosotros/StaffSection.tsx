@@ -29,7 +29,7 @@ const staff: StaffMember[] = [
     messageEs: '"Mi mayor anhelo es que cada persona encuentre su propósito en Cristo y experimente el amor transformador del Padre."',
     messageEn: '"My greatest desire is for every person to find their purpose in Christ and experience the Father\'s transforming love."',
     phone: '480-555-0101',
-    email: 'rody@renuevo.church',
+    email: 'rody@renuevo.cc',
     image: '/staff-photos/perfil-rody.png'
   },
   {
@@ -42,7 +42,7 @@ const staff: StaffMember[] = [
     messageEs: '"Creemos en una iglesia donde todos tienen un lugar en la mesa; una verdadera familia unida por la gracia de Dios."',
     messageEn: '"We believe in a church where everyone has a seat at the table; a true family united by God\'s grace."',
     phone: '480-555-0102',
-    email: 'sonia@renuevo.church',
+    email: 'sonia@renuevo.cc',
     image: '/staff-photos/perfil-sonia.png'
   }
 ];
