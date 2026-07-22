@@ -7,18 +7,20 @@ export default function LanguageSwitcher({ isScrolled = false }: { isScrolled?: 
   const router = useRouter();
   const pathname = usePathname();
 
-  const toggleLocale = () => {
-    const nextLocale = locale === 'es' ? 'en' : 'es';
+  const switchLocale = (targetLocale: string) => {
+    if (locale === targetLocale) return;
     
-    // We check if the pathname starts with the current locale, if so, we replace it
-    let newPath = pathname;
-    if (pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`) {
-      newPath = pathname.replace(`/${locale}`, `/${nextLocale}`);
+    const segments = pathname.split('/');
+    
+    // segments[0] is always '' because pathname starts with '/'
+    // segments[1] is typically the locale if it exists in the url
+    if (segments[1] === 'es' || segments[1] === 'en') {
+      segments[1] = targetLocale;
     } else {
-      // If no locale in url (e.g. root '/'), prepend the new one
-      newPath = `/${nextLocale}${pathname === '/' ? '' : pathname}`;
+      segments.splice(1, 0, targetLocale);
     }
     
+    const newPath = segments.join('/') || '/';
     router.push(newPath);
   };
 
@@ -27,7 +29,7 @@ export default function LanguageSwitcher({ isScrolled = false }: { isScrolled?: 
       isScrolled ? 'bg-black/5 border-black/10' : 'bg-white/10 border-white/20'
     }`} title="Cambiar idioma / Change language">
       <button 
-        onClick={() => locale !== 'es' && toggleLocale()}
+        onClick={() => switchLocale('es')}
         className={`px-3 py-1 rounded-full text-xs font-bold transition-all duration-300 ${
           locale === 'es' 
             ? (isScrolled ? 'bg-white text-primary-navy shadow-sm' : 'bg-white text-primary-navy shadow-sm')
@@ -37,7 +39,7 @@ export default function LanguageSwitcher({ isScrolled = false }: { isScrolled?: 
         ES
       </button>
       <button 
-        onClick={() => locale !== 'en' && toggleLocale()}
+        onClick={() => switchLocale('en')}
         className={`px-3 py-1 rounded-full text-xs font-bold transition-all duration-300 ${
           locale === 'en' 
             ? (isScrolled ? 'bg-white text-primary-navy shadow-sm' : 'bg-white text-primary-navy shadow-sm')
