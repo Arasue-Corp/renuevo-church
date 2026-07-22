@@ -24,7 +24,7 @@ export default async function MinistriesPage({params}: {params: Promise<{locale:
       />
 
       {/* CTA Join Church */}
-      <section className="pt-24 pb-8 px-6 text-center max-w-3xl mx-auto relative z-10">
+      <section className="pt-12 pb-4 px-6 text-center max-w-3xl mx-auto relative z-10">
         <h2 className="text-3xl font-bold mb-4 text-primary-navy font-serif">
           {isEs ? '¿Quieres ser parte de nuestra familia?' : 'Do you want to be part of our family?'}
         </h2>
@@ -37,7 +37,7 @@ export default async function MinistriesPage({params}: {params: Promise<{locale:
       </section>
 
       {/* General Sections: Estudio Bíblico y Alabanza */}
-      <section className="py-32 px-6 container mx-auto max-w-6xl relative z-10">
+      <section className="pt-8 pb-32 px-6 container mx-auto max-w-6xl relative z-10">
         <div className="grid md:grid-cols-2 gap-12">
           <div className="bg-white border border-stone-200 p-12 rounded-2xl hover:shadow-[0_0_40px_rgba(212,175,55,0.15)] hover:border-accent-gold transition-all duration-300 flex flex-col items-center text-center group">
             <div className="w-20 h-20 bg-primary-sand text-accent-gold flex items-center justify-center rounded-full mb-8 shadow-md border border-stone-200 group-hover:scale-110 transition-transform duration-500">
