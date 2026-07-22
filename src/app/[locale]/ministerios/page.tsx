@@ -1,6 +1,7 @@
 import { BookOpen, Music } from 'lucide-react';
 import MinistriesList from '@/components/ministerios/MinistriesList';
 import CinematicHeader from '@/components/layout/CinematicHeader';
+import JoinChurchModal from '@/components/mensaje/JoinChurchModal';
 
 export async function generateMetadata({params}: {params: Promise<{locale: string}>}) {
   const { locale } = await params;
@@ -21,6 +22,19 @@ export default async function MinistriesPage({params}: {params: Promise<{locale:
           : 'Connect, grow, and serve. We have a special place for you in our family.'}
         backgroundImageUrl="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto=format&fit=crop"
       />
+
+      {/* CTA Join Church */}
+      <section className="pt-24 pb-8 px-6 text-center max-w-3xl mx-auto relative z-10">
+        <h2 className="text-3xl font-bold mb-4 text-primary-navy font-serif">
+          {isEs ? '¿Quieres ser parte de nuestra familia?' : 'Do you want to be part of our family?'}
+        </h2>
+        <p className="text-stone-600 mb-8 text-lg">
+          {isEs 
+            ? 'Nos encantaría conocerte y ayudarte a encontrar tu lugar.' 
+            : 'We would love to meet you and help you find your place.'}
+        </p>
+        <JoinChurchModal isEs={isEs} />
+      </section>
 
       {/* General Sections: Estudio Bíblico y Alabanza */}
       <section className="py-32 px-6 container mx-auto max-w-6xl relative z-10">
