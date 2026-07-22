@@ -3,6 +3,8 @@ export async function generateMetadata({params}: {params: Promise<{locale: strin
   return { title: locale === 'es' ? 'El Mensaje | Renuevo Church' : 'The Message | Renuevo Church' };
 }
 
+import JoinChurchModal from '@/components/mensaje/JoinChurchModal';
+
 export default async function MessagePage({params}: {params: Promise<{locale: string}>}) {
   const { locale } = await params;
   const isEs = locale === 'es';
@@ -106,9 +108,7 @@ export default async function MessagePage({params}: {params: Promise<{locale: st
                 : '"Dear God, I recognize that I have sinned and separated myself from You. Thank You for loving me so much that You sent Jesus to die on the cross for me and to rise again to give me eternal life. I ask for Your forgiveness for my sins, and I choose to trust You and follow You from this day forward. In Jesus\' name, amen."'}
             </p>
           </div>
-          <a href="mailto:hola@renuevochurch.com" className="inline-flex justify-center items-center px-10 py-5 bg-accent-gold text-primary-navy rounded-xl font-bold text-sm tracking-widest uppercase hover:bg-white transition-all shadow-xl hover:shadow-2xl">
-            {isEs ? 'Cuéntanos tu decisión' : 'Tell us your decision'}
-          </a>
+          <JoinChurchModal isEs={isEs} />
         </div>
       </section>
     </div>
