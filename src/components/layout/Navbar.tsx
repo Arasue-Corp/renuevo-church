@@ -39,7 +39,7 @@ export default function Navbar() {
         <motion.div 
           className={`pointer-events-auto flex items-center justify-between transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-hidden ${
             isScrolled 
-              ? 'w-full max-w-5xl glass-cinematic rounded-full px-6 py-3'
+              ? 'w-full max-w-5xl glass-dark rounded-full px-6 py-3'
               : 'w-full max-w-7xl bg-transparent px-2 py-4 rounded-none border-transparent'
           }`}
         >
