@@ -9,7 +9,7 @@ export default function NextStepsSection({ locale }: { locale: string }) {
   const steps = [
     {
       title: isEs ? 'Conéctate' : 'Connect',
-      desc: isEs ? 'Encuentra tu lugar en nuestra familia a través de nuestros grupos de conexión.' : 'Find your place in our family through our connection groups.',
+      desc: isEs ? 'Encuentra tu lugar en nuestra familia a través de nuestros grupos de conexión.' : 'Find your place in our church family through connection groups.',
       icon: Users,
       link: `/${locale}/ministerios`,
       linkText: isEs ? 'Ver Grupos' : 'View Groups',
@@ -23,7 +23,7 @@ export default function NextStepsSection({ locale }: { locale: string }) {
     },
     {
       title: isEs ? 'Sirve' : 'Serve',
-      desc: isEs ? 'Descubre tu propósito sirviendo a Dios y a nuestra comunidad con tus talentos.' : 'Discover your purpose by serving God and our community with your talents.',
+      desc: isEs ? 'Descubre tu propósito sirviendo a Dios y a nuestra comunidad con tus talentos.' : 'Discover your purpose by using your talents to serve God and our community.',
       icon: HeartHandshake,
       link: `/${locale}/ministerios`,
       linkText: isEs ? 'Únete al Equipo' : 'Join the Team',
@@ -64,7 +64,7 @@ export default function NextStepsSection({ locale }: { locale: string }) {
             transition={{ delay: 0.1 }}
             className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary-navy font-serif"
           >
-            {isEs ? 'No fuiste creado para vivir solo' : 'You were not made to live alone'}
+            {isEs ? 'No fuiste creado para vivir solo' : 'You weren\'t meant to do life alone'}
           </motion.h2>
         </div>
 

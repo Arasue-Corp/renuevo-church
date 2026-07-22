@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useLocale } from 'next-intl';
 import LanguageSwitcher from '../LanguageSwitcher';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'motion/react';
 
@@ -13,6 +13,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [hoveredPath, setHoveredPath] = useState<string | null>(null);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
@@ -26,11 +27,21 @@ export default function Navbar() {
   
   const navLinks = [
     { name: locale === 'es' ? 'Inicio' : 'Home', path: `/${locale}` },
-    { name: locale === 'es' ? 'Nosotros' : 'About', path: `/${locale}/nosotros` },
-    { name: locale === 'es' ? 'El Mensaje' : 'The Message', path: `/${locale}/mensaje` },
-    { name: locale === 'es' ? 'Ministerios' : 'Ministries', path: `/${locale}/ministerios` },
-    { name: locale === 'es' ? 'Recursos' : 'Resources', path: `/${locale}/mensajes` },
-    { name: locale === 'es' ? 'Directorio' : 'Directory', path: `/${locale}/directorio` },
+    { 
+      name: locale === 'es' ? 'Conócenos' : 'About Us', 
+      subLinks: [
+        { name: locale === 'es' ? 'Nuestra Historia' : 'Our Story', path: `/${locale}/nosotros` },
+        { name: locale === 'es' ? 'Ministerios' : 'Ministries', path: `/${locale}/ministerios` },
+        { name: locale === 'es' ? 'Directorio' : 'Directory', path: `/${locale}/directorio` },
+      ]
+    },
+    {
+      name: locale === 'es' ? 'Mensajes' : 'Messages',
+      subLinks: [
+        { name: locale === 'es' ? 'Últimos Sermones' : 'Recent Sermons', path: `/${locale}/mensajes` },
+        { name: locale === 'es' ? 'El Mensaje' : 'The Gospel', path: `/${locale}/mensaje` },
+      ]
+    }
   ];
 
   return (
@@ -42,7 +53,7 @@ export default function Navbar() {
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       >
         <motion.div 
-          className={`pointer-events-auto flex items-center justify-between transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-hidden glass-warm rounded-full border border-stone-200/50 shadow-xl ${
+          className={`pointer-events-auto flex items-center justify-between transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-visible glass-warm rounded-full border border-stone-200/50 shadow-xl ${
             isScrolled 
               ? 'w-full max-w-5xl px-6 py-3'
               : 'w-full max-w-7xl px-8 py-4 mt-2'
@@ -56,14 +67,82 @@ export default function Navbar() {
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center relative z-20 text-stone-200">
             {navLinks.map((link) => {
+              if (link.subLinks) {
+                const isActive = link.subLinks.some(sub => pathname === sub.path || pathname === `${sub.path}/`);
+                const isHovered = openDropdown === link.name;
+                
+                return (
+                  <div 
+                    key={link.name}
+                    className="relative"
+                    onMouseEnter={() => setOpenDropdown(link.name)}
+                    onMouseLeave={() => setOpenDropdown(null)}
+                  >
+                    <button
+                      className={`relative px-5 py-2 text-sm font-bold tracking-wide transition-colors duration-300 flex items-center gap-1 ${
+                        isActive || isHovered ? 'text-accent-gold' : 'text-primary-navy'
+                      }`}
+                    >
+                      <span className="relative z-10">{link.name}</span>
+                      <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isHovered ? 'rotate-180' : ''}`} />
+                      
+                      {/* Hover Pill for Parent */}
+                      {isHovered && (
+                        <motion.div
+                          layoutId="nav-hover"
+                          className="absolute inset-0 rounded-full bg-primary-navy/5"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          transition={{ type: "spring", bounce: 0.15, duration: 0.5 }}
+                        />
+                      )}
+                      
+                      {/* Active Indicator */}
+                      {isActive && (
+                        <motion.div 
+                          layoutId="nav-active"
+                          className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-accent-gold"
+                          transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                        />
+                      )}
+                    </button>
+                    
+                    {/* Dropdown Menu */}
+                    <AnimatePresence>
+                      {isHovered && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                          transition={{ duration: 0.2 }}
+                          className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-48 bg-white rounded-2xl shadow-xl border border-stone-100 overflow-hidden py-2 z-50"
+                        >
+                          {link.subLinks.map((subLink) => (
+                            <Link
+                              key={subLink.name}
+                              href={subLink.path}
+                              onClick={() => setOpenDropdown(null)}
+                              className="block px-4 py-2 text-sm font-bold text-primary-navy hover:text-accent-gold hover:bg-stone-50 transition-colors"
+                            >
+                              {subLink.name}
+                            </Link>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                );
+              }
+
               const isActive = pathname === link.path || pathname === `${link.path}/`;
               const isHovered = hoveredPath === link.path;
               
               return (
                 <Link 
                   key={link.name} 
-                  href={link.path} 
-                  onMouseEnter={() => setHoveredPath(link.path)}
+                  href={link.path as string} 
+                  onMouseEnter={() => setHoveredPath(link.path as string)}
                   onMouseLeave={() => setHoveredPath(null)}
                   className={`relative px-5 py-2 text-sm font-bold tracking-wide transition-colors duration-300 ${
                     isActive || isHovered ? 'text-accent-gold' : 'text-primary-navy'
@@ -131,9 +210,44 @@ export default function Navbar() {
             transition={{ duration: 0.4 }}
             className="fixed inset-0 z-40 bg-black/90 md:hidden"
           >
-            <div className="flex flex-col h-full pt-32 px-8 pb-12">
+            <div className="flex flex-col h-full pt-32 px-8 pb-12 overflow-y-auto">
               <nav className="flex flex-col gap-6 flex-1">
                 {navLinks.map((link, i) => {
+                  if (link.subLinks) {
+                    const isActive = link.subLinks.some(sub => pathname === sub.path || pathname === `${sub.path}/`);
+                    return (
+                      <motion.div
+                        key={link.name}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
+                        transition={{ delay: i * 0.05 + 0.1, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                        className="flex flex-col gap-4"
+                      >
+                        <span className={`text-4xl font-serif tracking-tight ${isActive ? 'text-accent-gold font-bold' : 'text-stone-400'}`}>
+                          {link.name}
+                        </span>
+                        <div className="flex flex-col gap-3 pl-6 border-l-2 border-stone-800">
+                          {link.subLinks.map(subLink => {
+                            const isSubActive = pathname === subLink.path || pathname === `${subLink.path}/`;
+                            return (
+                              <Link
+                                key={subLink.name}
+                                href={subLink.path}
+                                onClick={() => setIsOpen(false)}
+                                className={`text-xl font-medium tracking-wide transition-colors ${
+                                  isSubActive ? 'text-accent-gold' : 'text-white hover:text-stone-300'
+                                }`}
+                              >
+                                {subLink.name}
+                              </Link>
+                            );
+                          })}
+                        </div>
+                      </motion.div>
+                    );
+                  }
+
                   const isActive = pathname === link.path || pathname === `${link.path}/`;
                   return (
                     <motion.div
@@ -144,7 +258,7 @@ export default function Navbar() {
                       transition={{ delay: i * 0.05 + 0.1, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                     >
                       <Link 
-                        href={link.path} 
+                        href={link.path as string} 
                         onClick={() => setIsOpen(false)}
                         className={`block text-4xl font-serif tracking-tight transition-colors ${
                           isActive ? 'text-accent-gold font-bold' : 'text-white hover:text-stone-300'

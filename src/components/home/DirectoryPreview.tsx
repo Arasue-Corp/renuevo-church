@@ -1,28 +1,62 @@
 'use client';
 import { motion } from 'motion/react';
 import Link from 'next/link';
-import { Store, ArrowRight, Building2, Briefcase } from 'lucide-react';
+import { Store, ArrowRight, Building2, Briefcase, Wrench, HeartPulse, GraduationCap, Utensils } from 'lucide-react';
 
-export default function DirectoryPreview({ locale }: { locale: string }) {
+interface CategoryFrequencies {
+  [key: string]: {
+    count: number;
+    titleEn: string;
+  };
+}
+
+export default function DirectoryPreview({ locale, businesses = [] }: { locale: string, businesses?: any[] }) {
   const isEs = locale === 'es';
 
-  const previewCategories = [
-    {
-      title: isEs ? 'Gastronomía' : 'Food & Dining',
-      icon: Store,
-      count: 12
-    },
-    {
-      title: isEs ? 'Servicios' : 'Services',
-      icon: Briefcase,
-      count: 24
-    },
-    {
-      title: isEs ? 'Inmobiliaria' : 'Real Estate',
-      icon: Building2,
-      count: 8
+  // Calculate most frequent categories
+  const categoryFreq: CategoryFrequencies = {};
+  
+  businesses.forEach(business => {
+    if (business.categories && business.categories.length > 0) {
+      business.categories.forEach((cat: string, index: number) => {
+        const catEn = business.categoriesEn && business.categoriesEn[index] ? business.categoriesEn[index] : cat;
+        if (!categoryFreq[cat]) {
+          categoryFreq[cat] = { count: 0, titleEn: catEn };
+        }
+        categoryFreq[cat].count += 1;
+      });
     }
-  ];
+  });
+
+  // Sort by count (descending) and take top 3
+  const topCategories = Object.entries(categoryFreq)
+    .sort((a, b) => b[1].count - a[1].count)
+    .slice(0, 3);
+
+  // Helper to pick an icon based on category name
+  const getCategoryIcon = (categoryName: string) => {
+    const lowerName = categoryName.toLowerCase();
+    if (lowerName.includes('comida') || lowerName.includes('gastronomía') || lowerName.includes('restaurante')) return Utensils;
+    if (lowerName.includes('salud') || lowerName.includes('médico') || lowerName.includes('dental')) return HeartPulse;
+    if (lowerName.includes('educación') || lowerName.includes('escuela')) return GraduationCap;
+    if (lowerName.includes('inmobiliaria') || lowerName.includes('bienes raíces') || lowerName.includes('construcción')) return Building2;
+    if (lowerName.includes('reparación') || lowerName.includes('mecánico') || lowerName.includes('mantenimiento')) return Wrench;
+    if (lowerName.includes('tienda') || lowerName.includes('comercio')) return Store;
+    return Briefcase; // Default
+  };
+
+  const previewCategories = topCategories.length > 0 
+    ? topCategories.map(([title, data]) => ({
+        title: isEs ? title : data.titleEn,
+        icon: getCategoryIcon(title),
+        count: data.count
+      }))
+    // Fallback if no data
+    : [
+        { title: isEs ? 'Gastronomía' : 'Food & Dining', icon: Utensils, count: 0 },
+        { title: isEs ? 'Servicios Profesionales' : 'Professional Services', icon: Briefcase, count: 0 },
+        { title: isEs ? 'Bienes Raíces' : 'Real Estate', icon: Building2, count: 0 }
+      ];
 
   return (
     <section className="bg-white py-24 md:py-32 relative overflow-hidden border-t border-stone-200">

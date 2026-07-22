@@ -40,7 +40,7 @@ export default function VisitUsSection({ locale }: { locale: string }) {
               className="absolute bottom-8 left-8 right-8 glass-warm p-6 rounded-2xl"
             >
               <h3 className="text-xl font-bold text-primary-navy font-serif mb-1">
-                {isEs ? 'Una Familia para Ti' : 'A Family for You'}
+                {isEs ? 'Una Familia para Ti' : 'A Place to Belong'}
               </h3>
               <p className="text-stone-700 text-sm font-medium">
                 {isEs ? 'No importa tu trasfondo, aquí eres bienvenido.' : 'No matter your background, you are welcome here.'}

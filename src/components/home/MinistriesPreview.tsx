@@ -10,19 +10,19 @@ export default function MinistriesPreview({ locale }: { locale: string }) {
   const ministries = [
     {
       title: 'Renuevo Kids',
-      desc: isEs ? 'Un ambiente seguro y divertido donde tus hijos aprenderán de Jesús.' : 'A safe and fun environment where your kids will learn about Jesus.',
+      desc: isEs ? 'Un ambiente seguro y divertido donde tus hijos aprenderán de Jesús.' : 'A safe, fun environment where your kids can learn about Jesus.',
       image: 'https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?q=80&w=2038&auto=format&fit=crop', // Kids placeholder
       link: `/${locale}/ministerios`,
     },
     {
       title: 'Renuevo Youth',
-      desc: isEs ? 'Adolescentes y jóvenes encontrando su identidad en Cristo.' : 'Teens and youth finding their identity in Christ.',
+      desc: isEs ? 'Adolescentes y jóvenes encontrando su identidad en Cristo.' : 'Helping teens and young adults find their identity in Christ.',
       image: 'https://images.unsplash.com/photo-1529070538774-1843cb3265df?q=80&w=2070&auto=format&fit=crop', // Youth placeholder
       link: `/${locale}/ministerios`,
     },
     {
       title: isEs ? 'Grupos de Conexión' : 'Connection Groups',
-      desc: isEs ? 'Comunidad auténtica para adultos, matrimonios y solteros.' : 'Authentic community for adults, couples, and singles.',
+      desc: isEs ? 'Comunidad auténtica para adultos, matrimonios y solteros.' : 'Authentic community for adults, married couples, and singles.',
       image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto=format&fit=crop', // Adults placeholder
       link: `/${locale}/ministerios`,
     }

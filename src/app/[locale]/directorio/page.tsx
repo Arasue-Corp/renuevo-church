@@ -117,7 +117,7 @@ export default async function DirectoryPage({params}: {params: Promise<{locale: 
                 )}
                 {!biz.contactPhone && !biz.contactEmail && !biz.website && (
                   <div className="text-stone-400 text-xs italic font-bold tracking-widest uppercase">
-                    {isEs ? 'Sin datos de contacto' : 'No contact data'}
+                    {isEs ? 'Sin datos de contacto' : 'Contact info unavailable'}
                   </div>
                 )}
               </div>

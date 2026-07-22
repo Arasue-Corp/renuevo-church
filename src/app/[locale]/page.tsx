@@ -1,4 +1,5 @@
 import { getRecentYouTubeVideos } from '@/lib/youtube';
+import { client } from '@/sanity/lib/client';
 import Hero from '@/components/home/Hero';
 import VisitUsSection from '@/components/home/VisitUsSection';
 import NextStepsSection from '@/components/home/NextStepsSection';
@@ -21,6 +22,14 @@ export default async function Home({params}: {params: Promise<{locale: string}>}
   
   const sermons = await getRecentYouTubeVideos(2);
 
+  // Fetch businesses for directory preview
+  let businesses = [];
+  try {
+    businesses = await client.fetch(`*[_type == "business" && isApproved == true] { categories, categoriesEn }`);
+  } catch (error) {
+    console.error("Error fetching businesses:", error);
+  }
+
   return (
     <div className="bg-primary-sand text-primary-navy selection:bg-accent-gold selection:text-white">
       <Hero locale={locale} />
@@ -36,7 +45,7 @@ export default async function Home({params}: {params: Promise<{locale: string}>}
       <NextStepsSection locale={locale} />
       
       {/* Business Directory Preview */}
-      <DirectoryPreview locale={locale} />
+      <DirectoryPreview locale={locale} businesses={businesses} />
 
       {/* Ministries Preview */}
       <MinistriesPreview locale={locale} />

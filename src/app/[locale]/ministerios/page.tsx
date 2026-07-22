@@ -26,7 +26,7 @@ export default async function MinistriesPage({params}: {params: Promise<{locale:
       {/* CTA Join Church */}
       <section className="pt-12 pb-4 px-6 text-center max-w-3xl mx-auto relative z-10">
         <h2 className="text-3xl font-bold mb-4 text-primary-navy font-serif">
-          {isEs ? '¿Quieres ser parte de nuestra familia?' : 'Do you want to be part of our family?'}
+          {isEs ? '¿Quieres ser parte de nuestra familia?' : 'Would you like to join our church family?'}
         </h2>
         <p className="text-stone-600 mb-8 text-lg">
           {isEs 

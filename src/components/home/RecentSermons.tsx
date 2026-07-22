@@ -30,7 +30,7 @@ export default function RecentSermons({ locale, sermons }: { locale: string, ser
               transition={{ delay: 0.1 }}
               className="text-4xl md:text-5xl font-bold text-primary-navy font-serif"
             >
-              {isEs ? 'Alimenta tu fe' : 'Feed your faith'}
+              {isEs ? 'Alimenta tu fe' : 'Grow in your faith'}
             </motion.h2>
           </div>
           

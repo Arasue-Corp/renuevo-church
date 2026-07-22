@@ -32,7 +32,7 @@ export default async function MessagePage({params}: {params: Promise<{locale: st
         {/* Step 1: God's Love & Our Problem */}
         <div className="flex flex-col md:flex-row gap-16 items-center">
           <div className="md:w-1/2">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-primary-navy font-serif leading-tight">{isEs ? '1. El Diseño Original y Nuestro Problema' : '1. Original Design & Our Problem'}</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-primary-navy font-serif leading-tight">{isEs ? '1. El Diseño Original y Nuestro Problema' : '1. God\'s Design & Our Brokenness'}</h2>
             <p className="text-lg text-stone-600 mb-8 font-medium leading-relaxed">
               {isEs
                 ? 'Dios nos creó para tener una relación perfecta con Él. Sin embargo, todos hemos elegido nuestro propio camino y nos hemos separado de Él a causa del pecado.'
@@ -93,7 +93,7 @@ export default async function MessagePage({params}: {params: Promise<{locale: st
       {/* CTA / Prayer */}
       <section className="bg-primary-navy py-32 text-center px-6">
         <div className="max-w-3xl mx-auto flex flex-col items-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white font-serif tracking-tight">{isEs ? '¿Quieres dar este paso hoy?' : 'Do you want to take this step today?'}</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white font-serif tracking-tight">{isEs ? '¿Quieres dar este paso hoy?' : 'Are you ready to take this step today?'}</h2>
           <div className="w-16 h-1 bg-accent-gold mx-auto mb-8" />
           <p className="text-xl text-stone-300 mb-12 font-medium leading-relaxed">
             {isEs 

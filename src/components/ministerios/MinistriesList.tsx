@@ -44,7 +44,7 @@ export default function MinistriesList({ locale }: { locale: string }) {
           <p className="text-stone-600 leading-relaxed font-medium">
             {isEs 
               ? 'Formando hombres íntegros, padres amorosos y líderes que impacten su hogar y sociedad guiados por el Espíritu Santo.'
-              : 'Forming men of integrity, loving fathers, and leaders who impact their home and society guided by the Holy Spirit.'}
+              : 'Equipping men of integrity and loving fathers to lead and impact their communities through the Holy Spirit.'}
           </p>
         </motion.div>
 
@@ -55,7 +55,7 @@ export default function MinistriesList({ locale }: { locale: string }) {
           <p className="text-stone-600 leading-relaxed font-medium">
             {isEs 
               ? 'Un espacio para fortalecer el corazón de la mujer, crecer en sabiduría bíblica y apoyarse mutuamente en cada etapa de la vida.'
-              : 'A space to strengthen the heart of a woman, grow in biblical wisdom, and support each other in every stage of life.'}
+              : 'A community empowering women to grow in biblical wisdom and support one another through every season of life.'}
           </p>
         </motion.div>
 
@@ -66,7 +66,7 @@ export default function MinistriesList({ locale }: { locale: string }) {
           <p className="text-stone-600 leading-relaxed font-medium">
             {isEs 
               ? 'Una generación apasionada por Jesús. Descubre tu propósito, construye amistades sanas y sé luz en tu escuela y universidad.'
-              : 'A generation passionate about Jesus. Discover your purpose, build healthy friendships, and be a light in your school and college.'}
+              : 'A generation passionate about Jesus. Discover your purpose, build healthy friendships, and be a light in your school and community.'}
           </p>
         </motion.div>
 
@@ -88,7 +88,7 @@ export default function MinistriesList({ locale }: { locale: string }) {
           <p className="text-stone-600 leading-relaxed font-medium">
             {isEs 
               ? 'Adoramos con todo nuestro ser. El ministerio de danza expresa libertad, gozo y reverencia a través del movimiento.'
-              : 'We worship with our whole being. The dance ministry expresses freedom, joy, and reverence through movement.'}
+              : 'Worshipping with our whole being. The dance ministry expresses freedom, joy, and reverence to God through movement.'}
           </p>
         </motion.div>
 
@@ -99,7 +99,7 @@ export default function MinistriesList({ locale }: { locale: string }) {
           <p className="text-stone-600 leading-relaxed font-medium">
             {isEs 
               ? 'Enseñando a los más pequeños a amar a Jesús en un ambiente seguro, divertido y adaptado a su edad.'
-              : 'Teaching the little ones to love Jesus in a safe, fun environment tailored to their age.'}
+              : 'Teaching our little ones to love Jesus in a safe, engaging environment tailored to their age.'}
           </p>
         </motion.div>
       </motion.div>

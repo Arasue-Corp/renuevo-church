@@ -72,10 +72,10 @@ export default function JoinChurchModal({ isEs }: JoinChurchModalProps) {
   };
 
   const checkboxes = [
-    { value: 'visit', label: isEs ? 'Quiero visitar la iglesia' : 'I want to visit the church' },
+    { value: 'visit', label: isEs ? 'Quiero visitar la iglesia' : 'I am planning a visit' },
     { value: 'new_in_town', label: isEs ? 'Soy nuevo en el vecindario' : 'I am new to the neighborhood' },
-    { value: 'home_visit', label: isEs ? 'Desearía una visita a domicilio' : 'I would like a home visit' },
-    { value: 'membership', label: isEs ? 'Me gustaría pertenecer a la iglesia' : 'I would like to belong to the church' },
+    { value: 'home_visit', label: isEs ? 'Desearía una visita a domicilio' : 'I would like a pastoral visit' },
+    { value: 'membership', label: isEs ? 'Me gustaría pertenecer a la iglesia' : 'I am interested in becoming a member' },
   ];
 
   const radios = [
@@ -89,7 +89,7 @@ export default function JoinChurchModal({ isEs }: JoinChurchModalProps) {
         onClick={() => setIsOpen(true)}
         className="inline-flex justify-center items-center px-10 py-5 bg-accent-gold text-primary-navy rounded-xl font-bold text-sm tracking-widest uppercase hover:bg-white transition-all shadow-xl hover:shadow-2xl"
       >
-        {isEs ? 'Unirse a nuestra iglesia' : 'Join our church'}
+        {isEs ? 'Unirse a nuestra iglesia' : 'Join our family'}
       </button>
 
       <AnimatePresence>
@@ -193,7 +193,7 @@ export default function JoinChurchModal({ isEs }: JoinChurchModalProps) {
 
                     {/* Options */}
                     <div className="space-y-4">
-                      <h4 className="font-serif font-bold text-lg text-primary-navy border-b border-stone-200 pb-2">{isEs ? 'Me gustaría...' : 'I would like to...'}</h4>
+                      <h4 className="font-serif font-bold text-lg text-primary-navy border-b border-stone-200 pb-2">{isEs ? 'Me gustaría...' : 'I am interested in...'}</h4>
                       
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                         {checkboxes.map((item) => (
