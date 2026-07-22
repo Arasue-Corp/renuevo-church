@@ -95,12 +95,12 @@ export function ResourceLists({
       </section>
 
       {/* Announcements */}
-      {announcements && announcements.length > 0 && (
-        <section id="anuncios" className="py-24 px-6 container mx-auto max-w-7xl border-t border-stone-200 relative z-10">
-          <h2 className="text-4xl md:text-5xl font-bold mb-16 text-primary-navy border-b-2 pb-6 border-accent-gold inline-block font-serif">
-            {isEs ? 'Anuncios' : 'Announcements'}
-          </h2>
-          
+      <section id="anuncios" className="py-24 px-6 container mx-auto max-w-7xl border-t border-stone-200 relative z-10">
+        <h2 className="text-4xl md:text-5xl font-bold mb-16 text-primary-navy border-b-2 pb-6 border-accent-gold inline-block font-serif">
+          {isEs ? 'Anuncios' : 'Announcements'}
+        </h2>
+        
+        {announcements && announcements.length > 0 ? (
           <motion.div 
             variants={container}
             initial="hidden"
@@ -132,8 +132,17 @@ export function ResourceLists({
               </motion.div>
             ))}
           </motion.div>
-        </section>
-      )}
+        ) : (
+          <div className="text-center p-20 bg-white border border-stone-200 shadow-xl shadow-stone-200/50 rounded-3xl">
+            <BookOpen className="w-16 h-16 text-primary-navy/20 mx-auto mb-6 stroke-[1.5]" />
+            <p className="text-stone-500 font-medium text-xl max-w-md mx-auto leading-relaxed">
+              {isEs 
+                ? 'Próximamente publicaremos anuncios y noticias importantes.' 
+                : 'Important announcements and news are coming soon.'}
+            </p>
+          </div>
+        )}
+      </section>
 
       {/* Devotionals */}
       <section className="py-24 px-6 container mx-auto max-w-7xl border-t border-stone-200 relative z-10">
