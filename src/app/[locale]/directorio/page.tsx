@@ -1,0 +1,122 @@
+import { client } from '@/sanity/lib/client';
+import { Briefcase, Mail, Phone, Globe } from 'lucide-react';
+import CinematicHeader from '@/components/layout/CinematicHeader';
+
+export async function generateMetadata({params}: {params: Promise<{locale: string}>}) {
+  const { locale } = await params;
+  return { title: locale === 'es' ? 'Directorio de Servicios | Renuevo Church' : 'Business Directory | Renuevo Church' };
+}
+
+export default async function DirectoryPage({params}: {params: Promise<{locale: string}>}) {
+  const { locale } = await params;
+  const isEs = locale === 'es';
+
+  // Fetch businesses
+  const query = `*[_type == "business" && isApproved == true] | order(name asc) {
+    _id, name, category, description, descriptionEn, "logoUrl": logo.asset->url, contactEmail, contactPhone, website
+  }`;
+  
+  let businesses = [];
+  try {
+    businesses = await client.fetch(query);
+  } catch (error) {
+    console.error("Error fetching businesses:", error);
+  }
+
+  // Fallback for UI if no data
+  if (businesses.length === 0) {
+    businesses = [
+      { _id: '1', name: 'Constructora de Paz', category: 'Construcción', description: 'Servicios de remodelación y construcción.', descriptionEn: 'Construction and remodeling services.', contactPhone: '555-1234' },
+      { _id: '2', name: 'Salud Integral', category: 'Salud', description: 'Atención médica y terapias comunitarias.', descriptionEn: 'Medical care and community therapy.', contactEmail: 'contacto@salud.com', website: 'https://ejemplo.com' }
+    ];
+  }
+
+  return (
+    <div className="bg-primary-sand min-h-screen pb-32 text-primary-navy">
+      <CinematicHeader 
+        title={isEs ? 'Catálogo de Servicios' : 'Business Directory'}
+        subtitle={isEs 
+          ? 'Apoya a los emprendedores y negocios de nuestra comunidad.' 
+          : 'Support the entrepreneurs and businesses in our community.'}
+        backgroundImageUrl="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop"
+      />
+
+      <div className="container mx-auto px-6 py-24 max-w-6xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          {businesses.map((biz: any) => (
+            <div key={biz._id} className="glass-cinematic p-10 rounded-2xl border border-white/10 hover:shadow-[0_0_30px_rgba(212,175,55,0.15)] hover:border-accent-gold transition-all duration-300 flex flex-col h-full group">
+              <div className="flex items-center gap-6 mb-8">
+                <div className="w-20 h-20 bg-white/5 rounded-xl overflow-hidden flex-shrink-0 flex items-center justify-center border border-white/10 group-hover:border-accent-gold/50 transition-colors">
+                  {biz.logoUrl ? (
+                    <img src={biz.logoUrl} alt={biz.name} className="w-full h-full object-cover" />
+                  ) : (
+                    <Briefcase className="w-8 h-8 text-white/40 stroke-[1.5]" />
+                  )}
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold text-white font-serif leading-tight group-hover:text-accent-gold transition-colors">{biz.name}</h3>
+                  <span className="inline-block px-4 py-1.5 bg-white/5 text-stone-300 text-xs font-bold tracking-widest uppercase rounded-full mt-3 border border-white/10">
+                    {biz.category}
+                  </span>
+                </div>
+              </div>
+              
+              <p className="text-stone-300 mb-10 text-base leading-relaxed flex-grow font-medium">
+                {isEs ? biz.description : (biz.descriptionEn || biz.description)}
+              </p>
+              
+              <div className="space-y-4 text-sm bg-white/5 p-6 rounded-xl border border-white/10">
+                {biz.contactPhone && (
+                  <div className="flex items-center gap-4 text-stone-200">
+                    <Phone className="w-5 h-5 text-accent-gold stroke-[1.5]" />
+                    <span className="font-bold">{biz.contactPhone}</span>
+                  </div>
+                )}
+                {biz.contactEmail && (
+                  <div className="flex items-center gap-4 text-stone-200">
+                    <Mail className="w-5 h-5 text-accent-gold stroke-[1.5]" />
+                    <span className="font-bold truncate">{biz.contactEmail}</span>
+                  </div>
+                )}
+                {biz.website && (
+                  <div className="flex items-center gap-4 text-white font-bold">
+                    <Globe className="w-5 h-5 text-accent-gold stroke-[1.5]" />
+                    <a href={biz.website} target="_blank" rel="noopener noreferrer" className="hover:text-accent-gold transition-colors truncate">
+                      {isEs ? 'Visitar sitio web' : 'Visit website'}
+                    </a>
+                  </div>
+                )}
+                {!biz.contactPhone && !biz.contactEmail && !biz.website && (
+                  <div className="text-stone-500 text-xs italic font-bold tracking-widest uppercase">
+                    {isEs ? 'Sin datos de contacto' : 'No contact data'}
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+        
+        {/* CTA to register */}
+        <div className="mt-32 glass-cinematic rounded-2xl p-12 md:p-16 text-center max-w-4xl mx-auto border border-white/10 relative overflow-hidden group hover:border-accent-gold transition-colors duration-500">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-accent-gold/10 rounded-full blur-[100px] group-hover:bg-accent-gold/20 transition-colors duration-700" />
+          <div className="absolute bottom-0 left-0 w-64 h-64 bg-white/5 rounded-full blur-[100px]" />
+          
+          <div className="relative z-10">
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight font-serif">
+              {isEs ? '¿Tienes un negocio?' : 'Do you own a business?'}
+            </h2>
+            <div className="w-16 h-1 bg-accent-gold mx-auto mb-8" />
+            <p className="text-stone-300 mb-10 max-w-xl mx-auto text-lg font-medium leading-relaxed">
+              {isEs 
+                ? 'Regístrate para formar parte del catálogo de servicios recomendados por Renuevo Church y date a conocer en nuestra comunidad.' 
+                : 'Register to be part of the recommended business directory by Renuevo Church and get known in our community.'}
+            </p>
+            <button className="relative inline-flex justify-center items-center gap-3 px-10 py-5 bg-white/10 text-white border border-white/20 rounded-xl font-bold text-sm tracking-widest uppercase hover:bg-white hover:text-primary-navy transition-all overflow-hidden group-hover:border-white">
+              <span className="relative z-10">{isEs ? 'Registrar mi negocio' : 'Register my business'}</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-outfit);
+  --color-primary-navy: #1E293B; /* Lighter navy for softer contrast */
+  --color-primary-sand: #F8F6F0; /* Warm off-white background */
+  --color-accent-gold: #C5A059; /* Warmer, softer gold */
+  --color-accent-warm: #E6D5B8; /* Warm secondary background */
+  
+  --animate-shimmer: shimmer 3s infinite linear;
+  --animate-shine: shine 1.5s ease-in-out;
+  --animate-slowPan: slowPan 20s ease-in-out infinite alternate;
+  
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  @keyframes shine {
+    100% { transform: translateX(100%); }
+  }
+
+  @keyframes slowPan {
+    0% { transform: scale(1.05) translate(0, 0); }
+    100% { transform: scale(1.1) translate(-2%, 2%); }
+  }
+}
+
+@utility preserve-3d {
+  transform-style: preserve-3d;
+}
+
+@utility animate-pulse-slow {
+  animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  text-wrap: pretty;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-outfit);
+  text-wrap: balance;
+}
+
+/* Glass effect class utilities */
+@utility glass {
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 8px 32px rgba(30, 41, 59, 0.05);
+}
+
+@utility glass-dark {
+  background-color: rgba(30, 41, 59, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+@utility glass-warm {
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 10px 40px rgba(197, 160, 89, 0.08);
+}
+
+/* Hide number input arrows */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
