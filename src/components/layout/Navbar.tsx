@@ -42,13 +42,13 @@ export default function Navbar() {
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       >
         <motion.div 
-          className={`pointer-events-auto flex items-center justify-between transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-hidden ${
+          className={`pointer-events-auto flex items-center justify-between transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-hidden glass-warm rounded-full border border-stone-200/50 shadow-xl ${
             isScrolled 
-              ? 'w-full max-w-5xl glass-warm rounded-full px-6 py-3'
-              : 'w-full max-w-7xl bg-transparent px-2 py-4 rounded-none border-transparent'
+              ? 'w-full max-w-5xl px-6 py-3'
+              : 'w-full max-w-7xl px-8 py-4 mt-2'
           }`}
         >
-          <Link href={`/${locale}`} className={`relative z-20 flex items-center gap-1 transition-colors duration-300 hover:opacity-80 ${isScrolled || !isHome ? 'text-primary-navy' : 'text-white'}`}>
+          <Link href={`/${locale}`} className="relative z-20 flex items-center gap-1 transition-colors duration-300 hover:opacity-80 text-primary-navy">
             <span className="font-serif font-bold text-2xl tracking-tighter">RENUEVO</span>
             <span className="font-sans font-bold tracking-widest text-[10px] mt-1 text-accent-gold">CHURCH</span>
           </Link>
@@ -66,9 +66,7 @@ export default function Navbar() {
                   onMouseEnter={() => setHoveredPath(link.path)}
                   onMouseLeave={() => setHoveredPath(null)}
                   className={`relative px-5 py-2 text-sm font-bold tracking-wide transition-colors duration-300 ${
-                    isScrolled || !isHome
-                      ? (isActive || isHovered ? 'text-accent-gold' : 'text-primary-navy')
-                      : (isActive || isHovered ? 'text-white' : 'text-stone-300')
+                    isActive || isHovered ? 'text-accent-gold' : 'text-primary-navy'
                   }`}
                 >
                   <span className="relative z-10">{link.name}</span>
@@ -77,7 +75,7 @@ export default function Navbar() {
                   {isHovered && (
                     <motion.div
                       layoutId="nav-hover"
-                      className={`absolute inset-0 rounded-full ${isScrolled || !isHome ? 'bg-primary-navy/5' : 'bg-white/10'}`}
+                      className="absolute inset-0 rounded-full bg-primary-navy/5"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
@@ -97,15 +95,11 @@ export default function Navbar() {
               );
             })}
             
-            <div className={`ml-4 pl-4 border-l flex items-center gap-4 transition-colors duration-300 ${isScrolled || !isHome ? 'border-primary-navy/20' : 'border-stone-400/30'}`}>
-              <LanguageSwitcher isScrolled={isScrolled || !isHome} />
+            <div className="ml-4 pl-4 border-l flex items-center gap-4 transition-colors duration-300 border-primary-navy/20">
+              <LanguageSwitcher isScrolled={true} />
               <Link 
                 href={`/${locale}/donaciones`} 
-                className={`text-xs font-bold tracking-widest uppercase px-5 py-2.5 rounded-full transition-all ${
-                  isScrolled || !isHome
-                    ? 'bg-primary-navy text-white hover:bg-stone-800 shadow-md hover:shadow-lg' 
-                    : 'bg-white text-primary-navy hover:bg-stone-100 shadow-lg'
-                }`}
+                className="text-xs font-bold tracking-widest uppercase px-5 py-2.5 rounded-full transition-all bg-primary-navy text-white hover:bg-stone-800 shadow-md hover:shadow-lg"
               >
                 {locale === 'es' ? 'Donar' : 'Give'}
               </Link>
@@ -113,8 +107,8 @@ export default function Navbar() {
           </nav>
 
           {/* Mobile Nav Toggle */}
-          <div className={`md:hidden flex items-center gap-4 relative z-20 transition-colors ${isScrolled || !isHome ? 'text-primary-navy' : 'text-white'}`}>
-            <LanguageSwitcher isScrolled={isScrolled || !isHome} />
+          <div className="md:hidden flex items-center gap-4 relative z-20 transition-colors text-primary-navy">
+            <LanguageSwitcher isScrolled={true} />
             <button 
               onClick={() => setIsOpen(!isOpen)} 
               className="p-2 focus:outline-none transition-transform hover:scale-110 active:scale-95"
