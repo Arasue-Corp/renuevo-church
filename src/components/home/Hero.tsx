@@ -48,12 +48,9 @@ export default function Hero({ locale }: { locale: string }) {
           />
         </motion.div>
         
-        {/* Cinematic Dark Overlays */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_0%,_rgba(0,0,0,0.8)_100%)]" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80" />
-        
-        {/* Transition to next warm section */}
-        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-primary-sand to-transparent opacity-100" />
+        {/* Soft Dark Overlay for text readability */}
+        <div className="absolute inset-0 bg-black/30" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_0%,_rgba(0,0,0,0.5)_100%)]" />
       </div>
       
       {/* Content */}

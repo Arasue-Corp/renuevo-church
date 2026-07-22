@@ -1,9 +1,8 @@
 'use client';
 import { usePathname, useRouter } from 'next/navigation';
 import { useLocale } from 'next-intl';
-import { Globe } from 'lucide-react';
 
-export default function LanguageSwitcher() {
+export default function LanguageSwitcher({ isScrolled = false }: { isScrolled?: boolean }) {
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
@@ -24,13 +23,15 @@ export default function LanguageSwitcher() {
   };
 
   return (
-    <div className="flex items-center bg-black/5 dark:bg-white/10 rounded-full p-1 border border-black/10 dark:border-white/10" title="Cambiar idioma / Change language">
+    <div className={`flex items-center rounded-full p-1 border transition-colors ${
+      isScrolled ? 'bg-black/5 border-black/10' : 'bg-white/10 border-white/20'
+    }`} title="Cambiar idioma / Change language">
       <button 
         onClick={() => locale !== 'es' && toggleLocale()}
         className={`px-3 py-1 rounded-full text-xs font-bold transition-all duration-300 ${
           locale === 'es' 
-            ? 'bg-white dark:bg-primary-navy text-primary-navy dark:text-white shadow-sm' 
-            : 'text-stone-500 hover:text-stone-700 dark:text-stone-400 dark:hover:text-stone-200'
+            ? (isScrolled ? 'bg-white text-primary-navy shadow-sm' : 'bg-white text-primary-navy shadow-sm')
+            : (isScrolled ? 'text-stone-500 hover:text-stone-800' : 'text-stone-300 hover:text-white')
         }`}
       >
         ES
@@ -39,8 +40,8 @@ export default function LanguageSwitcher() {
         onClick={() => locale !== 'en' && toggleLocale()}
         className={`px-3 py-1 rounded-full text-xs font-bold transition-all duration-300 ${
           locale === 'en' 
-            ? 'bg-white dark:bg-primary-navy text-primary-navy dark:text-white shadow-sm' 
-            : 'text-stone-500 hover:text-stone-700 dark:text-stone-400 dark:hover:text-stone-200'
+            ? (isScrolled ? 'bg-white text-primary-navy shadow-sm' : 'bg-white text-primary-navy shadow-sm')
+            : (isScrolled ? 'text-stone-500 hover:text-stone-800' : 'text-stone-300 hover:text-white')
         }`}
       >
         EN
