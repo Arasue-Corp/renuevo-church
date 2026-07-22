@@ -1,6 +1,7 @@
 import { client } from '@/sanity/lib/client';
 import { Briefcase, Mail, Phone, Globe } from 'lucide-react';
 import CinematicHeader from '@/components/layout/CinematicHeader';
+import RegisterBusinessModal from '@/components/directorio/RegisterBusinessModal';
 
 export async function generateMetadata({params}: {params: Promise<{locale: string}>}) {
   const { locale } = await params;
@@ -139,9 +140,7 @@ export default async function DirectoryPage({params}: {params: Promise<{locale: 
                 ? 'Regístrate para formar parte del catálogo de servicios recomendados por Renuevo Church y date a conocer en nuestra comunidad.' 
                 : 'Register to be part of the recommended business directory by Renuevo Church and get known in our community.'}
             </p>
-            <button className="relative inline-flex justify-center items-center gap-3 px-10 py-5 bg-accent-gold text-white rounded-xl font-bold text-sm tracking-widest uppercase hover:bg-white hover:text-primary-navy transition-all overflow-hidden group-hover:shadow-[0_0_20px_rgba(212,175,55,0.4)]">
-              <span className="relative z-10">{isEs ? 'Registrar mi negocio' : 'Register my business'}</span>
-            </button>
+            <RegisterBusinessModal isEs={isEs} />
           </div>
         </div>
       </div>
