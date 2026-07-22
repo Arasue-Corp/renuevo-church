@@ -40,9 +40,9 @@ export default function Hero({ locale }: { locale: string }) {
           className="absolute inset-0 w-full h-full scale-110"
         >
           <iframe
-            src="https://www.youtube.com/embed/vlwHFitriQ4?autoplay=1&mute=1&loop=1&playlist=vlwHFitriQ4&controls=0&showinfo=0&rel=0&modestbranding=1&disablekb=1&start=374"
+            src="https://www.youtube-nocookie.com/embed/vlwHFitriQ4?autoplay=1&mute=1&loop=1&playlist=vlwHFitriQ4&controls=0&showinfo=0&rel=0&modestbranding=1&disablekb=1&start=374"
             className="absolute top-1/2 left-1/2 w-[150vw] h-[150vh] min-w-full min-h-full -translate-x-1/2 -translate-y-1/2 object-cover opacity-70"
-            allow="autoplay; encrypted-media"
+            allow="autoplay; encrypted-media; picture-in-picture"
             frameBorder="0"
             tabIndex={-1}
           />

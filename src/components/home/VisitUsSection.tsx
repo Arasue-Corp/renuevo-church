@@ -26,6 +26,7 @@ export default function VisitUsSection({ locale }: { locale: string }) {
               src="https://images.unsplash.com/photo-1438232992991-995b7058bbb3?q=80&w=2073&auto=format&fit=crop" 
               alt="Comunidad Renuevo" 
               fill
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover opacity-80"
             />
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_0%,_rgba(30,41,59,0.7)_100%)]" />
