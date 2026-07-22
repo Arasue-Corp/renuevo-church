@@ -1,5 +1,5 @@
 'use client';
-import { motion } from 'motion/react';
+import { motion, Variants } from 'motion/react';
 import Link from 'next/link';
 import { Users, HeartHandshake, BookOpen, ArrowRight } from 'lucide-react';
 
@@ -30,7 +30,7 @@ export default function NextStepsSection({ locale }: { locale: string }) {
     }
   ];
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
@@ -38,7 +38,7 @@ export default function NextStepsSection({ locale }: { locale: string }) {
     }
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 30 },
     show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
   };
