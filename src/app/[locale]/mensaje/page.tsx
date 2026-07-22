@@ -45,7 +45,7 @@ export default async function MessagePage({params}: {params: Promise<{locale: st
             </blockquote>
           </div>
           <div className="md:w-1/2 bg-stone-200 h-80 rounded-2xl w-full flex items-center justify-center text-stone-500 overflow-hidden shadow-2xl border border-stone-200">
-             <img src="https://images.unsplash.com/photo-1519818177934-29759c55b16f?q=80&w=2070&auto=format&fit=crop" alt="Creation" className="w-full h-full object-cover" />
+             <img src="https://images.unsplash.com/photo-1444858291040-58f756a3bdd6?q=80&w=2078&auto=format&fit=crop" alt="Creation" className="w-full h-full object-cover" />
           </div>
         </div>
 
@@ -65,7 +65,7 @@ export default async function MessagePage({params}: {params: Promise<{locale: st
             </blockquote>
           </div>
           <div className="md:w-1/2 bg-stone-200 h-80 rounded-2xl w-full flex items-center justify-center text-stone-500 overflow-hidden shadow-2xl border border-stone-200">
-             <img src="https://images.unsplash.com/photo-1587321285217-1fcbb4141680?q=80&w=2070&auto=format&fit=crop" alt="Cross" className="w-full h-full object-cover" />
+             <img src="https://images.unsplash.com/photo-1504052434569-70ad5836ab65?q=80&w=2070&auto=format&fit=crop" alt="Cross" className="w-full h-full object-cover" />
           </div>
         </div>
 
