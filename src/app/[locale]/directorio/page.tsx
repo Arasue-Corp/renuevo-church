@@ -13,7 +13,7 @@ export default async function DirectoryPage({params}: {params: Promise<{locale: 
 
   // Fetch businesses
   const query = `*[_type == "business" && isApproved == true] | order(name asc) {
-    _id, name, category, description, descriptionEn, "logoUrl": logo.asset->url, contactEmail, contactPhone, website
+    _id, name, category, description, descriptionEn, "logoUrl": logo.asset->url, "dominantColor": logo.asset->metadata.palette.dominant.background, contactEmail, contactPhone, website
   }`;
   
   let businesses = [];
@@ -26,8 +26,30 @@ export default async function DirectoryPage({params}: {params: Promise<{locale: 
   // Fallback for UI if no data
   if (businesses.length === 0) {
     businesses = [
-      { _id: '1', name: 'Constructora de Paz', category: 'Construcción', description: 'Servicios de remodelación y construcción.', descriptionEn: 'Construction and remodeling services.', contactPhone: '555-1234' },
-      { _id: '2', name: 'Salud Integral', category: 'Salud', description: 'Atención médica y terapias comunitarias.', descriptionEn: 'Medical care and community therapy.', contactEmail: 'contacto@salud.com', website: 'https://ejemplo.com' }
+      { 
+        _id: 'alex-ai', 
+        name: 'Alex AI Insurtech', 
+        category: 'Seguros / Insurance', 
+        description: 'Soluciones modernas de seguros médicos y de vida. Protegemos tu futuro con planes accesibles y un enfoque tecnológico de primer nivel.', 
+        descriptionEn: 'Modern health and life insurance solutions. We protect your future with accessible plans and a top-tier technological approach.', 
+        contactPhone: '480-630-9630',
+        contactEmail: 'hello@alexai.cloud',
+        website: 'https://www.alexai.cloud',
+        logoUrl: '/directorio-logos/alex-logo.png',
+        dominantColor: '#e0f2fe' // Fallback color that fits Alex AI blue
+      },
+      { 
+        _id: 'arasue-horizon', 
+        name: 'Arasue Horizon', 
+        category: 'Tecnología, Productos, Servicios', 
+        description: 'Holding tecnológico y operativo. A través de nuestras divisiones Arasue Forge (desarrollo de software) y Arasue Labs (cadena de suministro), construimos la infraestructura del futuro.', 
+        descriptionEn: 'Technological and operational holding. Through our divisions Arasue Forge (software development) and Arasue Labs (supply chain), we build the infrastructure of the future.', 
+        contactPhone: '480-569-4280', 
+        contactEmail: 'hello@arasue.com', 
+        website: 'https://www.arasue.com',
+        logoUrl: '/directorio-logos/arasue-logo.png',
+        dominantColor: '#fef3c7' // Fallback color that fits Arasue gold/sand
+      }
     ];
   }
 
@@ -46,9 +68,12 @@ export default async function DirectoryPage({params}: {params: Promise<{locale: 
           {businesses.map((biz: any) => (
             <div key={biz._id} className="bg-white p-10 rounded-2xl border border-stone-200 shadow-xl shadow-stone-200/50 hover:shadow-2xl hover:border-accent-gold/50 transition-all duration-300 flex flex-col h-full group">
               <div className="flex items-center gap-6 mb-8">
-                <div className="w-20 h-20 bg-primary-sand rounded-xl overflow-hidden flex-shrink-0 flex items-center justify-center border border-stone-200 group-hover:border-accent-gold/50 transition-colors">
+                <div 
+                  className="w-20 h-20 rounded-xl overflow-hidden flex-shrink-0 flex items-center justify-center border border-stone-200 transition-colors p-2"
+                  style={{ backgroundColor: biz.dominantColor || '#F2D3AC' }} // Fallback to primary-sand hex
+                >
                   {biz.logoUrl ? (
-                    <img src={biz.logoUrl} alt={biz.name} className="w-full h-full object-cover" />
+                    <img src={biz.logoUrl} alt={biz.name} className="w-full h-full object-contain" />
                   ) : (
                     <Briefcase className="w-8 h-8 text-primary-navy/40 stroke-[1.5]" />
                   )}
