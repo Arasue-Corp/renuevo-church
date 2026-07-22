@@ -1,4 +1,4 @@
-import { Video, Youtube } from 'lucide-react';
+import { Video, Play } from 'lucide-react';
 import { getLatestYouTubeVideo } from '@/lib/youtube';
 
 export default async function LiveStreamSection({ locale }: { locale: string }) {
@@ -56,7 +56,7 @@ export default async function LiveStreamSection({ locale }: { locale: string }) 
               rel="noopener noreferrer" 
               className="inline-flex items-center gap-3 px-8 py-4 bg-[#FF0000] text-white rounded-xl font-bold text-sm tracking-widest uppercase hover:bg-[#CC0000] transition-all shadow-xl hover:shadow-2xl w-full sm:w-auto justify-center"
             >
-              <Youtube className="w-5 h-5" />
+              <Play className="w-5 h-5" />
               {isEs ? 'Canal de YouTube' : 'YouTube Channel'}
             </a>
             <a 
