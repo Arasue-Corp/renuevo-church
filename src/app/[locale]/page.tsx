@@ -43,6 +43,8 @@ export default async function Home({params}: {params: Promise<{locale: string}>}
     <div className="bg-primary-sand text-primary-navy selection:bg-accent-gold selection:text-white">
       <Hero locale={locale} />
       
+      <LiveStreamSection locale={locale} />
+
       {/* Narrative Flow */}
       <VisitUsSection locale={locale} />
       
@@ -58,8 +60,6 @@ export default async function Home({params}: {params: Promise<{locale: string}>}
       <MinistriesPreview locale={locale} />
       
       <RecentSermons locale={locale} sermons={sermons} />
-      
-      <LiveStreamSection locale={locale} />
       
       <Announcements locale={locale} />
     </div>
