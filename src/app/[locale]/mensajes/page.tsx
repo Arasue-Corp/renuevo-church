@@ -32,8 +32,8 @@ export default async function ResourcesPage({params}: {params: Promise<{locale: 
       <CinematicHeader 
         title={isEs ? 'Recursos y Mensajes' : 'Resources & Messages'}
         subtitle={isEs 
-          ? 'Alimenta tu fe con nuestros sermones y devocionales diarios basados en la Biblia.'
-          : 'Feed your faith with our biblical sermons and daily devotionals.'}
+          ? 'Alimenta tu fe con nuestros mensajes y devocionales diarios basados en la Biblia.'
+          : 'Feed your faith with our biblical messages and daily devotionals.'}
         backgroundImageUrl="https://images.unsplash.com/photo-1444858291040-58f756a3bdd6?q=80&w=2078&auto=format&fit=crop"
       />
 
