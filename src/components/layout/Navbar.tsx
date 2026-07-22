@@ -50,7 +50,7 @@ export default function Navbar() {
         >
           <Link href={`/${locale}`} className="relative z-20 flex items-center gap-1 transition-colors duration-300 hover:opacity-80 text-primary-navy">
             <span className="font-serif font-bold text-2xl tracking-tighter">RENUEVO</span>
-            <span className="font-sans font-bold tracking-widest text-[10px] mt-1 text-accent-gold">CHURCH</span>
+            <span className="font-sans font-bold tracking-widest text-[10px] mt-1 text-primary-navy/80">CHURCH</span>
           </Link>
           
           {/* Desktop Nav */}
