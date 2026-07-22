@@ -84,7 +84,7 @@ export default function VisitUsSection({ locale }: { locale: string }) {
                     {isEs ? 'Horarios de Servicio' : 'Service Times'}
                   </h4>
                   <p className="text-stone-700 font-medium text-lg">
-                    {isEs ? 'Domingos a las 11:30 AM' : 'Sundays at 11:30 AM'}
+                    {isEs ? 'Domingos a las 10:00 AM y 12:30 PM' : 'Sundays at 10:00 AM and 12:30 PM'}
                   </p>
                   <p className="text-stone-500 mt-1">
                     {isEs ? 'Servicio Bilingüe (Inglés y Español)' : 'Bilingual Service (English & Spanish)'}

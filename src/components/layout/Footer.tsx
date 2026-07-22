@@ -32,6 +32,12 @@ export default function Footer() {
                   <span className="leading-snug">6331 W Lamar Rd,<br/>Glendale, AZ 85301</span>
                 </a>
               </li>
+              <li>
+                <a href="tel:4804400396" className="hover:text-accent-gold transition flex items-center gap-2">
+                  <span>📞</span> 
+                  <span className="leading-snug">(480) 440-0396</span>
+                </a>
+              </li>
             </ul>
           </div>
           <div>
@@ -46,7 +52,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="text-sm flex flex-col md:flex-row justify-between items-center">
-          <p>© {new Date().getFullYear()} Renuevo Church. {locale === 'es' ? 'Todos los derechos reservados.' : 'All rights reserved.'}</p>
+          <p>© {new Date().getFullYear()} Arasue Horizon. {locale === 'es' ? 'Todos los derechos reservados.' : 'All rights reserved.'}</p>
           <div className="flex gap-4 mt-4 md:mt-0">
             <Link href={`/${locale}/politicas`} className="hover:text-white transition">
               {locale === 'es' ? 'Privacidad' : 'Privacy'}
