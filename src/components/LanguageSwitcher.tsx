@@ -1,53 +1,57 @@
 'use client';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { useLocale } from 'next-intl';
+import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 export default function LanguageSwitcher({ isScrolled = false }: { isScrolled?: boolean }) {
   const locale = useLocale();
-  const router = useRouter();
   const pathname = usePathname();
 
-  const switchLocale = (targetLocale: string) => {
-    if (locale === targetLocale) return;
+  const getPath = (targetLocale: string) => {
+    if (locale === targetLocale) return pathname;
     
     const segments = pathname.split('/');
-    
-    // segments[0] is always '' because pathname starts with '/'
-    // segments[1] is typically the locale if it exists in the url
     if (segments[1] === 'es' || segments[1] === 'en') {
       segments[1] = targetLocale;
     } else {
       segments.splice(1, 0, targetLocale);
     }
     
-    const newPath = segments.join('/') || '/';
-    window.location.href = newPath;
+    return segments.join('/') || '/';
   };
 
   return (
-    <div className={`flex items-center rounded-full p-1 border transition-colors ${
+    <div className={`relative flex items-center rounded-full p-1 border transition-colors ${
       isScrolled ? 'bg-black/5 border-black/10' : 'bg-white/10 border-white/20'
     }`} title="Cambiar idioma / Change language">
-      <button 
-        onClick={() => switchLocale('es')}
-        className={`px-3 py-1 rounded-full text-xs font-bold transition-all duration-300 ${
-          locale === 'es' 
-            ? (isScrolled ? 'bg-white text-primary-navy shadow-sm' : 'bg-white text-primary-navy shadow-sm')
-            : (isScrolled ? 'text-stone-500 hover:text-stone-800' : 'text-stone-300 hover:text-white')
-        }`}
-      >
-        ES
-      </button>
-      <button 
-        onClick={() => switchLocale('en')}
-        className={`px-3 py-1 rounded-full text-xs font-bold transition-all duration-300 ${
-          locale === 'en' 
-            ? (isScrolled ? 'bg-white text-primary-navy shadow-sm' : 'bg-white text-primary-navy shadow-sm')
-            : (isScrolled ? 'text-stone-500 hover:text-stone-800' : 'text-stone-300 hover:text-white')
-        }`}
-      >
-        EN
-      </button>
+      
+      {['es', 'en'].map((lang) => {
+        const isActive = locale === lang;
+        
+        return (
+          <Link 
+            key={lang}
+            href={getPath(lang)}
+            prefetch={false}
+            replace
+            className={`relative z-10 w-10 text-center py-1 rounded-full text-xs font-bold transition-colors duration-300 ${
+              isActive 
+                ? 'text-primary-navy'
+                : (isScrolled ? 'text-stone-500 hover:text-stone-800' : 'text-stone-300 hover:text-white')
+            }`}
+          >
+            {isActive && (
+              <motion.div
+                layoutId="active-locale-pill"
+                className="absolute inset-0 rounded-full bg-white shadow-sm -z-10"
+                transition={{ type: "spring", bounce: 0.15, duration: 0.5 }}
+              />
+            )}
+            {lang.toUpperCase()}
+          </Link>
+        );
+      })}
     </div>
   );
 }
