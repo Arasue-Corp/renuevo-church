@@ -44,42 +44,42 @@ export default async function DirectoryPage({params}: {params: Promise<{locale: 
       <div className="container mx-auto px-6 py-24 max-w-6xl">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {businesses.map((biz: any) => (
-            <div key={biz._id} className="glass-cinematic p-10 rounded-2xl border border-white/10 hover:shadow-[0_0_30px_rgba(212,175,55,0.15)] hover:border-accent-gold transition-all duration-300 flex flex-col h-full group">
+            <div key={biz._id} className="bg-white p-10 rounded-2xl border border-stone-200 shadow-xl shadow-stone-200/50 hover:shadow-2xl hover:border-accent-gold/50 transition-all duration-300 flex flex-col h-full group">
               <div className="flex items-center gap-6 mb-8">
-                <div className="w-20 h-20 bg-white/5 rounded-xl overflow-hidden flex-shrink-0 flex items-center justify-center border border-white/10 group-hover:border-accent-gold/50 transition-colors">
+                <div className="w-20 h-20 bg-primary-sand rounded-xl overflow-hidden flex-shrink-0 flex items-center justify-center border border-stone-200 group-hover:border-accent-gold/50 transition-colors">
                   {biz.logoUrl ? (
                     <img src={biz.logoUrl} alt={biz.name} className="w-full h-full object-cover" />
                   ) : (
-                    <Briefcase className="w-8 h-8 text-white/40 stroke-[1.5]" />
+                    <Briefcase className="w-8 h-8 text-primary-navy/40 stroke-[1.5]" />
                   )}
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-white font-serif leading-tight group-hover:text-accent-gold transition-colors">{biz.name}</h3>
-                  <span className="inline-block px-4 py-1.5 bg-white/5 text-stone-300 text-xs font-bold tracking-widest uppercase rounded-full mt-3 border border-white/10">
+                  <h3 className="text-2xl font-bold text-primary-navy font-serif leading-tight group-hover:text-accent-gold transition-colors">{biz.name}</h3>
+                  <span className="inline-block px-4 py-1.5 bg-primary-sand text-primary-navy text-xs font-bold tracking-widest uppercase rounded-full mt-3 border border-stone-200">
                     {biz.category}
                   </span>
                 </div>
               </div>
               
-              <p className="text-stone-300 mb-10 text-base leading-relaxed flex-grow font-medium">
+              <p className="text-stone-600 mb-10 text-base leading-relaxed flex-grow font-medium">
                 {isEs ? biz.description : (biz.descriptionEn || biz.description)}
               </p>
               
-              <div className="space-y-4 text-sm bg-white/5 p-6 rounded-xl border border-white/10">
+              <div className="space-y-4 text-sm bg-stone-50 p-6 rounded-xl border border-stone-200">
                 {biz.contactPhone && (
-                  <div className="flex items-center gap-4 text-stone-200">
+                  <div className="flex items-center gap-4 text-stone-700">
                     <Phone className="w-5 h-5 text-accent-gold stroke-[1.5]" />
                     <span className="font-bold">{biz.contactPhone}</span>
                   </div>
                 )}
                 {biz.contactEmail && (
-                  <div className="flex items-center gap-4 text-stone-200">
+                  <div className="flex items-center gap-4 text-stone-700">
                     <Mail className="w-5 h-5 text-accent-gold stroke-[1.5]" />
                     <span className="font-bold truncate">{biz.contactEmail}</span>
                   </div>
                 )}
                 {biz.website && (
-                  <div className="flex items-center gap-4 text-white font-bold">
+                  <div className="flex items-center gap-4 text-primary-navy font-bold">
                     <Globe className="w-5 h-5 text-accent-gold stroke-[1.5]" />
                     <a href={biz.website} target="_blank" rel="noopener noreferrer" className="hover:text-accent-gold transition-colors truncate">
                       {isEs ? 'Visitar sitio web' : 'Visit website'}
@@ -87,7 +87,7 @@ export default async function DirectoryPage({params}: {params: Promise<{locale: 
                   </div>
                 )}
                 {!biz.contactPhone && !biz.contactEmail && !biz.website && (
-                  <div className="text-stone-500 text-xs italic font-bold tracking-widest uppercase">
+                  <div className="text-stone-400 text-xs italic font-bold tracking-widest uppercase">
                     {isEs ? 'Sin datos de contacto' : 'No contact data'}
                   </div>
                 )}
@@ -97,8 +97,8 @@ export default async function DirectoryPage({params}: {params: Promise<{locale: 
         </div>
         
         {/* CTA to register */}
-        <div className="mt-32 glass-cinematic rounded-2xl p-12 md:p-16 text-center max-w-4xl mx-auto border border-white/10 relative overflow-hidden group hover:border-accent-gold transition-colors duration-500">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-accent-gold/10 rounded-full blur-[100px] group-hover:bg-accent-gold/20 transition-colors duration-700" />
+        <div className="mt-32 bg-primary-navy rounded-2xl p-12 md:p-16 text-center max-w-4xl mx-auto relative overflow-hidden group shadow-2xl">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-accent-gold/20 rounded-full blur-[100px] group-hover:bg-accent-gold/30 transition-colors duration-700" />
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-white/5 rounded-full blur-[100px]" />
           
           <div className="relative z-10">
@@ -111,7 +111,7 @@ export default async function DirectoryPage({params}: {params: Promise<{locale: 
                 ? 'Regístrate para formar parte del catálogo de servicios recomendados por Renuevo Church y date a conocer en nuestra comunidad.' 
                 : 'Register to be part of the recommended business directory by Renuevo Church and get known in our community.'}
             </p>
-            <button className="relative inline-flex justify-center items-center gap-3 px-10 py-5 bg-white/10 text-white border border-white/20 rounded-xl font-bold text-sm tracking-widest uppercase hover:bg-white hover:text-primary-navy transition-all overflow-hidden group-hover:border-white">
+            <button className="relative inline-flex justify-center items-center gap-3 px-10 py-5 bg-accent-gold text-white rounded-xl font-bold text-sm tracking-widest uppercase hover:bg-white hover:text-primary-navy transition-all overflow-hidden group-hover:shadow-[0_0_20px_rgba(212,175,55,0.4)]">
               <span className="relative z-10">{isEs ? 'Registrar mi negocio' : 'Register my business'}</span>
             </button>
           </div>
