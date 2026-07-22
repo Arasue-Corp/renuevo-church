@@ -69,9 +69,9 @@ export default async function DirectoryPage({params}: {params: Promise<{locale: 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {businesses.map((biz: any) => (
             <div key={biz._id} className="bg-white p-10 rounded-2xl border border-stone-200 shadow-xl shadow-stone-200/50 hover:shadow-2xl hover:border-accent-gold/50 transition-all duration-300 flex flex-col h-full group">
-              <div className="flex items-center gap-6 mb-8">
+              <div className="flex flex-col items-center text-center gap-5 mb-6">
                 <div 
-                  className="w-28 h-28 rounded-2xl overflow-hidden flex-shrink-0 flex items-center justify-center border border-stone-200 transition-colors"
+                  className="w-32 h-32 rounded-2xl overflow-hidden flex-shrink-0 flex items-center justify-center border border-stone-200 transition-colors shadow-sm"
                   style={{ backgroundColor: biz.dominantColor || '#F2D3AC' }} // Fallback to primary-sand hex
                 >
                   {biz.logoUrl ? (
@@ -80,9 +80,10 @@ export default async function DirectoryPage({params}: {params: Promise<{locale: 
                     <Briefcase className="w-10 h-10 text-primary-navy/40 stroke-[1.5]" />
                   )}
                 </div>
-                <div className="flex-1">
+                
+                <div className="flex flex-col items-center gap-3">
                   <h3 className="text-2xl font-bold text-primary-navy font-serif leading-tight group-hover:text-accent-gold transition-colors">{biz.name}</h3>
-                  <div className="flex flex-wrap gap-2 mt-3">
+                  <div className="flex flex-wrap justify-center gap-2">
                     {(isEs ? biz.categories : (biz.categoriesEn || biz.categories))?.map((cat: string, index: number) => (
                       <span key={index} className="inline-block px-3 py-1 bg-primary-sand text-primary-navy text-xs font-bold tracking-widest uppercase rounded-full border border-stone-200">
                         {cat}
@@ -92,9 +93,7 @@ export default async function DirectoryPage({params}: {params: Promise<{locale: 
                 </div>
               </div>
               
-              <p className="text-stone-600 mb-10 text-base leading-relaxed flex-grow font-medium">
-                {isEs ? biz.description : (biz.descriptionEn || biz.description)}
-              </p>
+              <p className="text-stone-600 leading-relaxed flex-grow text-center mb-8">{isEs ? biz.description : (biz.descriptionEn || biz.description)}</p>
               
               <div className="space-y-4 text-sm bg-stone-50 p-6 rounded-xl border border-stone-200">
                 {biz.contactPhone && (
