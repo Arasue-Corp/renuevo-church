@@ -6,11 +6,13 @@ import Image from 'next/image';
 export function ResourceLists({ 
   locale, 
   sermons, 
-  devotionals 
+  devotionals,
+  announcements
 }: { 
   locale: string; 
   sermons: any[]; 
   devotionals: any[]; 
+  announcements?: any[];
 }) {
   const isEs = locale === 'es';
 
@@ -91,6 +93,47 @@ export function ResourceLists({
           ))}
         </motion.div>
       </section>
+
+      {/* Announcements */}
+      {announcements && announcements.length > 0 && (
+        <section id="anuncios" className="py-24 px-6 container mx-auto max-w-7xl border-t border-stone-200 relative z-10">
+          <h2 className="text-4xl md:text-5xl font-bold mb-16 text-primary-navy border-b-2 pb-6 border-accent-gold inline-block font-serif">
+            {isEs ? 'Anuncios' : 'Announcements'}
+          </h2>
+          
+          <motion.div 
+            variants={container}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
+            {announcements.map((ann: any) => (
+              <motion.div key={ann._id} variants={item} className="bg-white rounded-3xl overflow-hidden border border-stone-200 shadow-xl shadow-stone-200/50 hover:shadow-2xl hover:border-accent-gold/50 transition-all duration-300 group flex flex-col">
+                <div className="h-60 bg-stone-100 relative overflow-hidden border-b border-stone-200">
+                  {ann.imageUrl ? (
+                    <img src={ann.imageUrl} alt={ann.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out opacity-90 group-hover:opacity-100" />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center text-primary-navy/20 bg-primary-sand">
+                      <span className="text-sm font-bold tracking-widest uppercase">{isEs ? 'Anuncio' : 'Announcement'}</span>
+                    </div>
+                  )}
+                </div>
+                <div className="p-8 flex-grow flex flex-col justify-between">
+                  <div>
+                    <p className="text-xs font-bold text-accent-gold uppercase tracking-widest mb-3">
+                      {new Date(ann.publishedAt).toLocaleDateString(locale)}
+                    </p>
+                    <h3 className="text-2xl font-bold text-primary-navy mb-4 font-serif leading-tight group-hover:text-accent-gold transition-colors">
+                      {isEs ? ann.title : (ann.titleEn || ann.title)}
+                    </h3>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </section>
+      )}
 
       {/* Devotionals */}
       <section className="py-24 px-6 container mx-auto max-w-7xl border-t border-stone-200 relative z-10">

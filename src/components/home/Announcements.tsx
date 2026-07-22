@@ -37,7 +37,7 @@ export default async function Announcements({ locale }: { locale: string }) {
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {announcements.map((ann: any) => (
-            <Link href={`/${locale}/anuncios/${ann.slug?.current || ann._id}`} key={ann._id} className="group flex flex-col bg-white rounded-2xl overflow-hidden shadow-xl shadow-stone-200/50 border border-stone-100 hover:shadow-2xl hover:border-accent-gold/50 transition-all duration-300">
+            <Link href={`/${locale}/mensajes#anuncios`} key={ann._id} className="group flex flex-col bg-white rounded-2xl overflow-hidden shadow-xl shadow-stone-200/50 border border-stone-100 hover:shadow-2xl hover:border-accent-gold/50 transition-all duration-300">
               <div className="relative h-60 bg-primary-sand overflow-hidden">
                 {ann.imageUrl ? (
                   <img src={ann.imageUrl} alt={ann.title} className="w-full h-full object-cover group-hover:scale-105 transition duration-700" />
@@ -60,7 +60,7 @@ export default async function Announcements({ locale }: { locale: string }) {
         </div>
         
         <div className="mt-16 text-center">
-          <Link href={`/${locale}/mensajes`} className="inline-flex justify-center items-center px-10 py-5 bg-white text-primary-navy rounded-xl font-bold text-sm tracking-widest uppercase shadow-md hover:shadow-xl hover:text-accent-gold transition-all border border-stone-200">
+          <Link href={`/${locale}/mensajes#anuncios`} className="inline-flex justify-center items-center px-10 py-5 bg-white text-primary-navy rounded-xl font-bold text-sm tracking-widest uppercase shadow-md hover:shadow-xl hover:text-accent-gold transition-all border border-stone-200">
             {isEs ? 'Ver todos los anuncios' : 'View all announcements'}
           </Link>
         </div>

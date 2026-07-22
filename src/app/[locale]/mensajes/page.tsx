@@ -21,8 +21,15 @@ export default async function ResourcesPage({params}: {params: Promise<{locale: 
   let sermons = await getRecentYouTubeVideos(8);
 
   let devotionals = [];
+  let announcements = [];
   try {
     devotionals = await client.fetch(devQuery);
+    
+    // Fetch Announcements
+    const annQuery = `*[_type == "announcement"] | order(publishedAt desc) {
+      _id, title, titleEn, slug, "imageUrl": featuredImage.asset->url, publishedAt
+    }`;
+    announcements = await client.fetch(annQuery);
   } catch (error) {
     console.error("Error fetching sanity content:", error);
   }
@@ -37,7 +44,7 @@ export default async function ResourcesPage({params}: {params: Promise<{locale: 
         backgroundImageUrl="https://images.unsplash.com/photo-1444858291040-58f756a3bdd6?q=80&w=2078&auto=format&fit=crop"
       />
 
-      <ResourceLists locale={locale} sermons={sermons} devotionals={devotionals} />
+      <ResourceLists locale={locale} sermons={sermons} devotionals={devotionals} announcements={announcements} />
     </div>
   );
 }
