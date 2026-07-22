@@ -74,7 +74,7 @@ export default function Hero({ locale }: { locale: string }) {
             className="text-6xl md:text-8xl lg:text-[7rem] font-bold tracking-tighter mb-6 font-serif leading-[0.95] text-white drop-shadow-2xl"
           >
             {isEs ? 'Bienvenido a' : 'Welcome'} <br/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-gold via-yellow-400 to-accent-gold">
+            <span className="italic font-medium">
               {isEs ? 'Casa.' : 'Home.'}
             </span>
           </motion.h1>
@@ -122,7 +122,7 @@ export default function Hero({ locale }: { locale: string }) {
         transition={{ delay: 2, duration: 1 }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 opacity-60 hover:opacity-100 transition-opacity z-10"
       >
-        <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-primary-navy">
+        <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-white">
           {isEs ? 'Descubre Más' : 'Discover More'}
         </span>
         <motion.div
