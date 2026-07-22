@@ -45,18 +45,29 @@ export default function DirectoryPreview({ locale, businesses = [] }: { locale: 
     return Briefcase; // Default
   };
 
-  const previewCategories = topCategories.length > 0 
-    ? topCategories.map(([title, data]) => ({
-        title: isEs ? title : data.titleEn,
-        icon: getCategoryIcon(title),
-        count: data.count
-      }))
-    // Fallback if no data
-    : [
-        { title: isEs ? 'Gastronomía' : 'Food & Dining', icon: Utensils, count: 0 },
-        { title: isEs ? 'Servicios Profesionales' : 'Professional Services', icon: Briefcase, count: 0 },
-        { title: isEs ? 'Bienes Raíces' : 'Real Estate', icon: Building2, count: 0 }
-      ];
+  const defaultCategories = [
+    { title: isEs ? 'Gastronomía' : 'Food & Dining', icon: Utensils, count: 12 },
+    { title: isEs ? 'Servicios' : 'Services', icon: Briefcase, count: 24 },
+    { title: isEs ? 'Inmobiliaria' : 'Real Estate', icon: Building2, count: 8 }
+  ];
+
+  let previewCategories = topCategories.map(([title, data]) => ({
+    title: isEs ? title : data.titleEn,
+    icon: getCategoryIcon(title),
+    count: data.count
+  }));
+
+  // Pad with defaults if we have less than 3 real categories from Sanity
+  if (previewCategories.length < 3) {
+    const existingTitles = previewCategories.map(c => c.title);
+    for (const defCat of defaultCategories) {
+      if (previewCategories.length >= 3) break;
+      // Don't add if we already have a category with same title (e.g., if one real category happens to be 'Gastronomía')
+      if (!existingTitles.includes(defCat.title)) {
+        previewCategories.push(defCat);
+      }
+    }
+  }
 
   return (
     <section className="bg-white py-24 md:py-32 relative overflow-hidden border-t border-stone-200">
