@@ -36,7 +36,7 @@ export default async function DirectoryPage({params}: {params: Promise<{locale: 
         contactPhone: '480-630-9630',
         contactEmail: 'hello@alexai.cloud',
         website: 'https://www.alexai.cloud',
-        logoUrl: '/directorio-logos/alex-logo.png',
+        logoUrl: '/directorio-logos/logo-alex.png',
         dominantColor: '#e0f2fe' // Fallback color that fits Alex AI blue
       },
       { 
@@ -49,7 +49,7 @@ export default async function DirectoryPage({params}: {params: Promise<{locale: 
         contactPhone: '480-569-4280', 
         contactEmail: 'hello@arasue.com', 
         website: 'https://www.arasue.com',
-        logoUrl: '/directorio-logos/arasue-logo.png',
+        logoUrl: '/directorio-logos/logo-arasue.png',
         dominantColor: '#fef3c7' // Fallback color that fits Arasue gold/sand
       }
     ];
