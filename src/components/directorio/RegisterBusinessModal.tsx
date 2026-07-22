@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, CheckCircle, Loader2, Upload, Briefcase } from 'lucide-react';
 import { submitBusiness } from '@/app/actions/submitBusiness';
@@ -10,6 +11,7 @@ interface RegisterBusinessModalProps {
 }
 
 export default function RegisterBusinessModal({ isEs }: RegisterBusinessModalProps) {
+  const [mounted, setMounted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -67,6 +69,10 @@ export default function RegisterBusinessModal({ isEs }: RegisterBusinessModalPro
       setPreviewUrl(url);
     }
   };
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -129,8 +135,9 @@ export default function RegisterBusinessModal({ isEs }: RegisterBusinessModalPro
         <span className="relative z-10">{isEs ? 'Registrar mi negocio' : 'Register my business'}</span>
       </button>
 
-      <AnimatePresence>
-        {isOpen && (
+      {mounted && createPortal(
+        <AnimatePresence>
+          {isOpen && (
           <div className="fixed inset-0 z-50 flex items-center justify-center px-4 py-8">
             <motion.div 
               initial={{ opacity: 0 }}
@@ -310,7 +317,9 @@ export default function RegisterBusinessModal({ isEs }: RegisterBusinessModalPro
             </motion.div>
           </div>
         )}
-      </AnimatePresence>
+        </AnimatePresence>,
+        document.body
+      )}
     </>
   );
 }
