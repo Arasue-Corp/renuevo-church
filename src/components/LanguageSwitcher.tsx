@@ -1,24 +1,44 @@
 'use client';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useLocale } from 'next-intl';
-import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { useState, useTransition, useEffect } from 'react';
 
 export default function LanguageSwitcher({ isScrolled = false }: { isScrolled?: boolean }) {
   const locale = useLocale();
+  const router = useRouter();
   const pathname = usePathname();
+  const [isPending, startTransition] = useTransition();
+  const [optimisticLocale, setOptimisticLocale] = useState(locale);
+
+  // Sync optimistic locale if server sends a new one (e.g., initial load or completed nav)
+  useEffect(() => {
+    setOptimisticLocale(locale);
+  }, [locale]);
 
   const getPath = (targetLocale: string) => {
-    if (locale === targetLocale) return pathname;
-    
     const segments = pathname.split('/');
     if (segments[1] === 'es' || segments[1] === 'en') {
       segments[1] = targetLocale;
     } else {
       segments.splice(1, 0, targetLocale);
     }
-    
     return segments.join('/') || '/';
+  };
+
+  const switchLocale = (targetLocale: string) => {
+    if (optimisticLocale === targetLocale) return;
+    
+    // Instantly move the pill and change text color
+    setOptimisticLocale(targetLocale);
+    
+    const newPath = getPath(targetLocale);
+    
+    // Smooth navigation avoiding white flashes, but forcing data refetch
+    startTransition(() => {
+      router.replace(newPath);
+      router.refresh();
+    });
   };
 
   return (
@@ -27,14 +47,13 @@ export default function LanguageSwitcher({ isScrolled = false }: { isScrolled?: 
     }`} title="Cambiar idioma / Change language">
       
       {['es', 'en'].map((lang) => {
-        const isActive = locale === lang;
+        const isActive = optimisticLocale === lang;
         
         return (
-          <Link 
+          <button 
             key={lang}
-            href={getPath(lang)}
-            prefetch={false}
-            replace
+            onClick={() => switchLocale(lang)}
+            disabled={isPending}
             className={`relative z-10 w-10 text-center py-1 rounded-full text-xs font-bold transition-colors duration-300 ${
               isActive 
                 ? 'text-primary-navy'
@@ -49,7 +68,7 @@ export default function LanguageSwitcher({ isScrolled = false }: { isScrolled?: 
               />
             )}
             {lang.toUpperCase()}
-          </Link>
+          </button>
         );
       })}
     </div>
