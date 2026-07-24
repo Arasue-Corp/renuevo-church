@@ -37,11 +37,14 @@ export default function Hero({ locale }: { locale: string }) {
       <div className="absolute inset-0 z-0 w-full h-full overflow-hidden pointer-events-none">
         <motion.div 
           style={{ y }} 
-          className="absolute inset-0 w-full h-full scale-110"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.7 }}
+          transition={{ duration: 2, delay: 3.5 }}
+          className="absolute inset-0 w-full h-full scale-[1.15]"
         >
           <iframe
             src="https://www.youtube-nocookie.com/embed/vlwHFitriQ4?autoplay=1&mute=1&loop=1&playlist=vlwHFitriQ4&controls=0&showinfo=0&rel=0&modestbranding=1&disablekb=1&start=374&vq=hd1080&hd=1"
-            className="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2 opacity-70 pointer-events-none"
+            className="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2 pointer-events-none"
             allow="autoplay; encrypted-media; picture-in-picture"
             frameBorder="0"
             tabIndex={-1}
