@@ -38,7 +38,7 @@ export default function Navbar() {
     {
       name: locale === 'es' ? 'Mensajes' : 'Messages',
       subLinks: [
-        { name: locale === 'es' ? 'Últimos Sermones' : 'Recent Sermons', path: `/${locale}/mensajes` },
+        { name: locale === 'es' ? 'Últimos Servicios' : 'Recent Services', path: `/${locale}/mensajes` },
         { name: locale === 'es' ? 'El Mensaje' : 'The Gospel', path: `/${locale}/mensaje` },
       ]
     }
