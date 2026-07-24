@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, CheckCircle, Loader2 } from 'lucide-react';
 import { submitConnectionCard, type ConnectionCardData } from '@/app/actions/submitConnectionCard';
@@ -10,10 +11,15 @@ interface JoinChurchModalProps {
 }
 
 export default function JoinChurchModal({ isEs }: JoinChurchModalProps) {
+  const [mounted, setMounted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const [formData, setFormData] = useState<ConnectionCardData>({
     name: '',
@@ -92,8 +98,9 @@ export default function JoinChurchModal({ isEs }: JoinChurchModalProps) {
         {isEs ? 'Unirse a nuestra iglesia' : 'Join our family'}
       </button>
 
-      <AnimatePresence>
-        {isOpen && (
+      {mounted ? createPortal(
+        <AnimatePresence>
+          {isOpen && (
           <div className="fixed inset-0 z-50 flex items-center justify-center px-4 py-8">
             <motion.div 
               initial={{ opacity: 0 }}
@@ -265,7 +272,9 @@ export default function JoinChurchModal({ isEs }: JoinChurchModalProps) {
             </motion.div>
           </div>
         )}
-      </AnimatePresence>
+        </AnimatePresence>,
+        document.body
+      ) : null}
     </>
   );
 }
