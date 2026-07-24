@@ -2,12 +2,66 @@
 import Link from 'next/link';
 import { motion, useScroll, useTransform, Variants } from 'motion/react';
 import { ArrowDown } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+
+declare global {
+  interface Window {
+    onYouTubeIframeAPIReady: () => void;
+    YT: any;
+  }
+}
 
 export default function Hero({ locale }: { locale: string }) {
   const isEs = locale === 'es';
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const [isVideoReady, setIsVideoReady] = useState(false);
   
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 1000], [0, 400]);
+
+  useEffect(() => {
+    // Load YouTube API
+    if (!window.YT) {
+      const tag = document.createElement('script');
+      tag.src = 'https://www.youtube.com/iframe_api';
+      const firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
+    }
+
+    let player: any;
+
+    const initPlayer = () => {
+      if (!iframeRef.current) return;
+      player = new window.YT.Player(iframeRef.current, {
+        events: {
+          onStateChange: (event: any) => {
+            // PLAYING state is 1
+            if (event.data === 1) {
+              // Once it starts playing, YouTube's UI fades out after ~2.5 seconds.
+              // Wait 2.5s to ensure UI is completely gone before fading in the video.
+              setTimeout(() => {
+                setIsVideoReady(true);
+              }, 2500);
+            }
+          }
+        }
+      });
+    };
+
+    if (window.YT && window.YT.Player) {
+      initPlayer();
+    } else {
+      window.onYouTubeIframeAPIReady = () => {
+        initPlayer();
+      };
+    }
+
+    return () => {
+      if (player && player.destroy) {
+        player.destroy();
+      }
+    };
+  }, []);
   
   // Cinematic text animation variants
   const containerVariants: Variants = {
@@ -38,12 +92,13 @@ export default function Hero({ locale }: { locale: string }) {
         <motion.div 
           style={{ y }} 
           initial={{ opacity: 0 }}
-          animate={{ opacity: 0.7 }}
-          transition={{ duration: 2, delay: 3.5 }}
+          animate={{ opacity: isVideoReady ? 0.7 : 0 }}
+          transition={{ duration: 2 }}
           className="absolute inset-0 w-full h-full scale-[1.15]"
         >
           <iframe
-            src="https://www.youtube-nocookie.com/embed/vlwHFitriQ4?autoplay=1&mute=1&loop=1&playlist=vlwHFitriQ4&controls=0&showinfo=0&rel=0&modestbranding=1&disablekb=1&playsinline=1&start=374&vq=hd1080&hd=1"
+            ref={iframeRef}
+            src="https://www.youtube-nocookie.com/embed/vlwHFitriQ4?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=vlwHFitriQ4&controls=0&showinfo=0&rel=0&modestbranding=1&disablekb=1&playsinline=1&start=374&vq=hd1080&hd=1"
             className="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2 pointer-events-none"
             allow="autoplay; encrypted-media; picture-in-picture"
             frameBorder="0"
