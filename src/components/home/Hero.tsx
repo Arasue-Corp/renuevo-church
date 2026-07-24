@@ -15,8 +15,8 @@ export default function Hero({ locale }: { locale: string }) {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.4,
-        delayChildren: 0.5
+        staggerChildren: 0.15,
+        delayChildren: 0.3
       }
     }
   };
@@ -27,7 +27,7 @@ export default function Hero({ locale }: { locale: string }) {
       opacity: 1, 
       y: 0, 
       filter: 'blur(0px)',
-      transition: { duration: 1.8, ease: [0.16, 1, 0.3, 1] } 
+      transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } 
     }
   };
 
@@ -37,10 +37,7 @@ export default function Hero({ locale }: { locale: string }) {
       <div className="absolute inset-0 z-0 w-full h-full overflow-hidden pointer-events-none">
         <motion.div 
           style={{ y }} 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.7 }}
-          transition={{ duration: 3 }}
-          className="absolute inset-0 w-full h-full scale-105"
+          className="absolute inset-0 w-full h-full scale-105 opacity-70"
         >
           <video
             autoPlay
