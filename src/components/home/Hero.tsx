@@ -37,7 +37,10 @@ export default function Hero({ locale }: { locale: string }) {
       <div className="absolute inset-0 z-0 w-full h-full overflow-hidden pointer-events-none">
         <motion.div 
           style={{ y }} 
-          className="absolute inset-0 w-full h-full scale-105 opacity-70"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.7 }}
+          transition={{ duration: 2.5, ease: "easeInOut" }}
+          className="absolute inset-0 w-full h-full scale-105"
         >
           <video
             autoPlay
