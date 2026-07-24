@@ -15,8 +15,8 @@ export default function Hero({ locale }: { locale: string }) {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.3
+        staggerChildren: 0.4,
+        delayChildren: 0.5
       }
     }
   };
@@ -27,7 +27,7 @@ export default function Hero({ locale }: { locale: string }) {
       opacity: 1, 
       y: 0, 
       filter: 'blur(0px)',
-      transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } 
+      transition: { duration: 1.8, ease: [0.16, 1, 0.3, 1] } 
     }
   };
 
