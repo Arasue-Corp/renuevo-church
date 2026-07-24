@@ -1,4 +1,4 @@
-import { BookOpen, Music } from 'lucide-react';
+import { BookOpen, Music, Clock } from 'lucide-react';
 import MinistriesList from '@/components/ministerios/MinistriesList';
 import CinematicHeader from '@/components/layout/CinematicHeader';
 import JoinChurchModal from '@/components/mensaje/JoinChurchModal';
@@ -49,6 +49,10 @@ export default async function MinistriesPage({params}: {params: Promise<{locale:
                 ? 'Creemos que la Palabra de Dios transforma. Únete a nuestros grupos de estudio para profundizar en las Escrituras, hacer preguntas y aplicar la Biblia a tu vida diaria.'
                 : 'We believe God\'s Word transforms. Join our study groups to dive deep into Scripture, ask questions, and apply the Bible to your daily life.'}
             </p>
+            <div className="mb-10 flex items-center justify-center gap-2 text-stone-500 font-medium bg-stone-50 py-3 px-6 rounded-full w-full">
+              <Clock className="w-5 h-5 text-accent-gold" />
+              <span>{isEs ? 'Miércoles, 6:00 PM' : 'Wednesdays, 6:00 PM'}</span>
+            </div>
             <blockquote className="border-l-4 border-accent-gold pl-6 text-primary-navy italic font-serif text-xl font-bold leading-tight">
               {isEs 
                 ? '"Toda la Escritura es inspirada por Dios y es útil para enseñarnos lo que es verdad y para hacernos ver lo que está mal en nuestra vida." — 2 Timoteo 3:16 (NTV)'
