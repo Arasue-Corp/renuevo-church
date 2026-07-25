@@ -1,5 +1,6 @@
 'use client';
 import { Play, BookOpen } from 'lucide-react';
+import Link from 'next/link';
 import { motion, Variants } from 'motion/react';
 import Image from 'next/image';
 
@@ -110,25 +111,27 @@ export function ResourceLists({
           >
             {announcements.map((ann: any) => (
               <motion.div key={ann._id} variants={item} className="bg-white rounded-3xl overflow-hidden border border-stone-200 shadow-xl shadow-stone-200/50 hover:shadow-2xl hover:border-accent-gold/50 transition-all duration-300 group flex flex-col">
-                <div className="h-60 bg-stone-100 relative overflow-hidden border-b border-stone-200">
-                  {ann.imageUrl ? (
-                    <img src={ann.imageUrl} alt={ann.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out opacity-90 group-hover:opacity-100" />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center text-primary-navy/20 bg-primary-sand">
-                      <span className="text-sm font-bold tracking-widest uppercase">{isEs ? 'Anuncio' : 'Announcement'}</span>
-                    </div>
-                  )}
-                </div>
-                <div className="p-8 flex-grow flex flex-col justify-between">
-                  <div>
-                    <p className="text-xs font-bold text-accent-gold uppercase tracking-widest mb-3">
-                      {new Date(ann.publishedAt).toLocaleDateString(locale)}
-                    </p>
-                    <h3 className="text-2xl font-bold text-primary-navy mb-4 font-serif leading-tight group-hover:text-accent-gold transition-colors">
-                      {isEs ? ann.title : (ann.titleEn || ann.title)}
-                    </h3>
+                <Link href={`/${locale}/anuncios/${ann.slug?.current || ann._id}`} className="flex flex-col h-full">
+                  <div className="h-60 bg-stone-100 relative overflow-hidden border-b border-stone-200">
+                    {ann.imageUrl ? (
+                      <img src={ann.imageUrl} alt={ann.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out opacity-90 group-hover:opacity-100" />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center text-primary-navy/20 bg-primary-sand">
+                        <span className="text-sm font-bold tracking-widest uppercase">{isEs ? 'Anuncio' : 'Announcement'}</span>
+                      </div>
+                    )}
                   </div>
-                </div>
+                  <div className="p-8 flex-grow flex flex-col justify-between">
+                    <div>
+                      <p className="text-xs font-bold text-accent-gold uppercase tracking-widest mb-3">
+                        {new Date(ann.publishedAt).toLocaleDateString(locale)}
+                      </p>
+                      <h3 className="text-2xl font-bold text-primary-navy mb-4 font-serif leading-tight group-hover:text-accent-gold transition-colors">
+                        {isEs ? ann.title : (ann.titleEn || ann.title)}
+                      </h3>
+                    </div>
+                  </div>
+                </Link>
               </motion.div>
             ))}
           </motion.div>
