@@ -93,13 +93,14 @@ export default async function AnnouncementArticlePage({params}: {params: Promise
         
         {/* Featured Image */}
         {announcement.imageUrl && (
-          <div className="relative w-full aspect-[21/9] rounded-3xl overflow-hidden shadow-2xl shadow-stone-200/50 mb-16 border border-stone-100">
+          <div className="w-full mb-16">
             <Image 
               src={announcement.imageUrl} 
               alt={displayTitle} 
-              fill 
-              sizes="(max-width: 1024px) 100vw, 1024px"
-              className="object-cover"
+              width={0}
+              height={0}
+              sizes="100vw"
+              className="w-full h-auto rounded-3xl shadow-2xl shadow-stone-200/50 border border-stone-100"
               priority
             />
           </div>
