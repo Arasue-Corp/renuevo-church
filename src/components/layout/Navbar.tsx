@@ -135,7 +135,8 @@ export default function Navbar() {
                 );
               }
 
-              const isActive = pathname === link.path || pathname === `${link.path}/`;
+              const isHomeLink = link.path === `/${locale}`;
+              const isActive = !isHomeLink && (pathname === link.path || pathname === `${link.path}/`);
               const isHovered = hoveredPath === link.path;
               
               return (
@@ -248,7 +249,8 @@ export default function Navbar() {
                     );
                   }
 
-                  const isActive = pathname === link.path || pathname === `${link.path}/`;
+                  const isHomeLink = link.path === `/${locale}`;
+                  const isActive = !isHomeLink && (pathname === link.path || pathname === `${link.path}/`);
                   return (
                     <motion.div
                       key={link.name}
