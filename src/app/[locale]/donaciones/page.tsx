@@ -1,4 +1,4 @@
-import { CreditCard, Smartphone, Mail } from 'lucide-react';
+import { Smartphone, Mail, Heart } from 'lucide-react';
 import TaxForm from '@/components/donaciones/TaxForm';
 
 export async function generateMetadata({params}: {params: Promise<{locale: string}>}) {
@@ -92,24 +92,15 @@ export default async function DonationsPage({params}: {params: Promise<{locale: 
               </div>
             </div>
 
-            {/* Online / Stripe */}
-            <div className="group bg-primary-navy p-8 md:p-10 rounded-2xl shadow-2xl shadow-primary-navy/20 border-2 border-transparent hover:border-accent-gold transition-all">
-              <div className="flex flex-col sm:flex-row items-start gap-6">
-                <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center shrink-0 text-accent-gold group-hover:bg-accent-gold group-hover:text-primary-navy transition-colors">
-                  <CreditCard className="w-8 h-8 stroke-[2]" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-2xl font-serif font-bold text-white mb-3 tracking-tight">
-                    {isEs ? 'Donación en Línea' : 'Online Giving'}
-                  </h3>
-                  <p className="text-stone-300 mb-8 font-medium text-base leading-relaxed">
-                    {isEs ? 'Utiliza tu tarjeta de crédito, débito o billetera digital a través de nuestra pasarela segura.' : 'Give securely using your credit card, debit card, or digital wallet.'}
-                  </p>
-                  <a href="#" className="inline-flex justify-center items-center w-full sm:w-auto px-8 py-4 bg-accent-gold text-primary-navy hover:bg-white transition-colors text-sm font-bold tracking-widest uppercase rounded-xl">
-                    {isEs ? 'Donar Ahora' : 'Give Now'}
-                  </a>
-                </div>
-              </div>
+            {/* Cheerful Giver Verse */}
+            <div className="bg-primary-sand/50 p-8 md:p-10 rounded-2xl border border-accent-gold/30 flex flex-col items-center text-center">
+              <Heart className="w-10 h-10 text-accent-gold mb-6 stroke-[1.5]" />
+              <blockquote className="text-primary-navy font-serif text-xl md:text-2xl font-bold leading-relaxed italic mb-6">
+                {isEs 
+                  ? '"Cada uno debe dar según lo que haya decidido en su corazón, no de mala gana ni por obligación, porque Dios ama al que da con alegría."'
+                  : '"Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver."'}
+              </blockquote>
+              <cite className="text-stone-500 font-bold uppercase tracking-widest text-sm">— {isEs ? '2 Corintios 9:7' : '2 Corinthians 9:7'}</cite>
             </div>
 
           </div>
