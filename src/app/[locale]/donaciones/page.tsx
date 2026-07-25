@@ -37,6 +37,21 @@ export default async function DonationsPage({params}: {params: Promise<{locale: 
 
       {/* Main Content Layout - Warm & High Contrast */}
       <section className="container mx-auto px-6 max-w-6xl py-24 relative z-20 -mt-10">
+        
+        {/* Cheerful Giver Verse */}
+        <div className="max-w-4xl mx-auto mb-20">
+          <div className="bg-white p-10 md:p-14 rounded-3xl shadow-2xl shadow-stone-200/50 border border-stone-100 flex flex-col items-center text-center relative overflow-hidden group">
+            <div className="absolute inset-0 bg-gradient-to-br from-accent-gold/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+            <Heart className="w-12 h-12 text-accent-gold mb-8 stroke-[1.5] relative z-10" />
+            <blockquote className="text-primary-navy font-serif text-2xl md:text-3xl font-bold leading-relaxed italic mb-8 relative z-10">
+              {isEs 
+                ? '"Cada uno debe dar según lo que haya decidido en su corazón, no de mala gana ni por obligación, porque Dios ama al que da con alegría."'
+                : '"Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver."'}
+            </blockquote>
+            <cite className="text-accent-gold font-bold uppercase tracking-widest text-sm relative z-10">— {isEs ? '2 Corintios 9:7' : '2 Corinthians 9:7'}</cite>
+          </div>
+        </div>
+
         <div className="grid lg:grid-cols-12 gap-16 lg:gap-20">
           
           {/* Payment Methods Column */}
@@ -90,17 +105,6 @@ export default async function DonationsPage({params}: {params: Promise<{locale: 
                   </div>
                 </div>
               </div>
-            </div>
-
-            {/* Cheerful Giver Verse */}
-            <div className="bg-primary-sand/50 p-8 md:p-10 rounded-2xl border border-accent-gold/30 flex flex-col items-center text-center">
-              <Heart className="w-10 h-10 text-accent-gold mb-6 stroke-[1.5]" />
-              <blockquote className="text-primary-navy font-serif text-xl md:text-2xl font-bold leading-relaxed italic mb-6">
-                {isEs 
-                  ? '"Cada uno debe dar según lo que haya decidido en su corazón, no de mala gana ni por obligación, porque Dios ama al que da con alegría."'
-                  : '"Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver."'}
-              </blockquote>
-              <cite className="text-stone-500 font-bold uppercase tracking-widest text-sm">— {isEs ? '2 Corintios 9:7' : '2 Corinthians 9:7'}</cite>
             </div>
 
           </div>
