@@ -70,7 +70,7 @@ export default function MinistriesList({ locale }: { locale: string }) {
 
         {/* Jóvenes */}
         <motion.div variants={item} className="group bg-white p-10 rounded-2xl hover:-translate-y-2 transition-all duration-300 shadow-md hover:shadow-xl hover:shadow-accent-gold/20 hover:border-accent-gold border border-stone-200">
-          <h3 className="text-3xl font-bold mb-2 font-serif text-primary-navy group-hover:text-accent-gold transition-colors">Renuevo Youth</h3>
+          <h3 className="text-3xl font-bold mb-2 font-serif text-primary-navy group-hover:text-accent-gold transition-colors">New Hope</h3>
           <p className="text-accent-gold text-xs font-bold mb-6 uppercase tracking-widest">{isEs ? 'Ministerio de Jóvenes' : 'Youth Ministry'}</p>
           <p className="text-stone-600 leading-relaxed font-medium">
             {isEs 
@@ -138,7 +138,7 @@ export default function MinistriesList({ locale }: { locale: string }) {
           </p>
           <div className="mt-6 pt-6 border-t border-stone-100 flex items-center gap-3 text-stone-500 font-medium">
             <Clock className="w-5 h-5 text-accent-gold shrink-0" />
-            <span>{isEs ? 'Último viernes del mes, 7:00 PM' : 'Last Friday of the month, 7:00 PM'}</span>
+            <span>{isEs ? 'Último viernes del mes, 8:00 PM' : 'Last Friday of the month, 8:00 PM'}</span>
           </div>
         </motion.div>
       </motion.div>
