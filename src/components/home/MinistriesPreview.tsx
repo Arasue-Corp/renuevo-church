@@ -15,7 +15,7 @@ export default function MinistriesPreview({ locale }: { locale: string }) {
       link: `/${locale}/ministerios`,
     },
     {
-      title: 'Renuevo Youth',
+      title: 'New Hope',
       desc: isEs ? 'Adolescentes y jóvenes encontrando su identidad en Cristo.' : 'Helping teens and young adults find their identity in Christ.',
       image: 'https://images.unsplash.com/photo-1529070538774-1843cb3265df?q=80&w=2070&auto=format&fit=crop', // Youth placeholder
       link: `/${locale}/ministerios`,
