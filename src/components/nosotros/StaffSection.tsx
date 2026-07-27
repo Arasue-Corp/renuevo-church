@@ -2,7 +2,7 @@
 
 import { useRef } from 'react';
 import { motion, useInView } from 'motion/react';
-import { Phone, Mail, Quote } from 'lucide-react';
+import { Phone, Quote } from 'lucide-react';
 
 interface StaffMember {
   id: string;
@@ -100,6 +100,7 @@ const StaffCard = ({ member, isEs, index }: { member: StaffMember, isEs: boolean
               <Phone size={14} />
             </div>
             {member.phone}
+          </a>
         </div>
       </div>
     </motion.div>
