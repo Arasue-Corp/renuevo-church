@@ -100,12 +100,6 @@ const StaffCard = ({ member, isEs, index }: { member: StaffMember, isEs: boolean
               <Phone size={14} />
             </div>
             {member.phone}
-          </a>
-            <div className="w-8 h-8 rounded-full bg-stone-50 flex items-center justify-center group-hover:bg-accent-gold/10">
-              <Mail size={14} />
-            </div>
-            {member.email}
-          </a>
         </div>
       </div>
     </motion.div>
