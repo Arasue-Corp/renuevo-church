@@ -101,10 +101,6 @@ const StaffCard = ({ member, isEs, index }: { member: StaffMember, isEs: boolean
             </div>
             {member.phone}
           </a>
-          <a 
-            href={`mailto:${member.email}`} 
-            className="flex items-center gap-2 text-stone-500 hover:text-accent-gold transition-colors text-sm font-bold"
-          >
             <div className="w-8 h-8 rounded-full bg-stone-50 flex items-center justify-center group-hover:bg-accent-gold/10">
               <Mail size={14} />
             </div>
