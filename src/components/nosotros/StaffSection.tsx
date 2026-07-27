@@ -14,7 +14,6 @@ interface StaffMember {
   messageEs: string;
   messageEn: string;
   phone: string;
-  email: string;
   image: string;
 }
 
