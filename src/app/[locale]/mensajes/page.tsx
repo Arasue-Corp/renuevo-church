@@ -12,18 +12,18 @@ export default async function ResourcesPage({params}: {params: Promise<{locale: 
   const { locale } = await params;
   const isEs = locale === 'es';
 
-  // Fetch Devotionals
-  const devQuery = `*[_type == "devotional" && publishedAt <= now()] | order(publishedAt desc)[0...6] {
-    _id, title, titleEn, slug, "imageUrl": featuredImage.asset->url, publishedAt, author
+  // Fetch Verses of the Day (History)
+  const verseQuery = `*[_type == "verseOfTheDay" && publishedAt <= now()] | order(publishedAt desc)[0...12] {
+    _id, reference, referenceEn, text, textEn, "imageUrl": featuredImage.asset->url, publishedAt
   }`;
   
   // Fetch Sermons from YouTube
   let sermons = await getRecentYouTubeVideos(8);
 
-  let devotionals = [];
+  let verses = [];
   let announcements = [];
   try {
-    devotionals = await client.fetch(devQuery);
+    verses = await client.fetch(verseQuery);
     
     // Fetch Announcements
     const annQuery = `*[_type == "announcement"] | order(publishedAt desc) {
@@ -44,7 +44,7 @@ export default async function ResourcesPage({params}: {params: Promise<{locale: 
         backgroundImageUrl="https://images.unsplash.com/photo-1444858291040-58f756a3bdd6?q=80&w=2078&auto=format&fit=crop"
       />
 
-      <ResourceLists locale={locale} sermons={sermons} devotionals={devotionals} announcements={announcements} />
+      <ResourceLists locale={locale} sermons={sermons} verses={verses} announcements={announcements} />
     </div>
   );
 }

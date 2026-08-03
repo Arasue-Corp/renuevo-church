@@ -7,12 +7,12 @@ import Image from 'next/image';
 export function ResourceLists({ 
   locale, 
   sermons, 
-  devotionals,
+  verses,
   announcements
 }: { 
   locale: string; 
   sermons: any[]; 
-  devotionals: any[]; 
+  verses: any[]; 
   announcements?: any[];
 }) {
   const isEs = locale === 'es';
@@ -147,13 +147,13 @@ export function ResourceLists({
         )}
       </section>
 
-      {/* Devotionals */}
+      {/* Verse of the Day History */}
       <section className="py-24 px-6 container mx-auto max-w-7xl border-t border-stone-200 relative z-10">
         <h2 className="text-4xl md:text-5xl font-bold mb-16 text-primary-navy border-b-2 pb-6 border-accent-gold inline-block font-serif">
-          {isEs ? 'Devocionales' : 'Devotionals'}
+          {isEs ? 'Versículos Anteriores' : 'Past Verses'}
         </h2>
         
-        {devotionals.length > 0 ? (
+        {verses.length > 0 ? (
           <motion.div 
             variants={container}
             initial="hidden"
@@ -161,29 +161,20 @@ export function ResourceLists({
             viewport={{ once: true, margin: "-50px" }}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
-            {devotionals.map((dev: any) => (
-              <motion.div key={dev._id} variants={item} className="bg-white rounded-3xl overflow-hidden border border-stone-200 shadow-xl shadow-stone-200/50 hover:shadow-2xl hover:border-accent-gold/50 transition-all duration-300 group flex flex-col">
-                <div className="h-60 bg-stone-100 relative overflow-hidden border-b border-stone-200">
-                  {dev.imageUrl ? (
-                    <img src={dev.imageUrl} alt={dev.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out opacity-90 group-hover:opacity-100" />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center text-primary-navy/20">
-                      <BookOpen className="w-12 h-12 opacity-30 stroke-[1.5]" />
-                    </div>
-                  )}
-                </div>
-                <div className="p-8 flex-grow flex flex-col justify-between">
+            {verses.map((verse: any) => (
+              <motion.div key={verse._id} variants={item} className="bg-white rounded-3xl overflow-hidden border border-stone-200 shadow-xl shadow-stone-200/50 hover:shadow-2xl hover:border-accent-gold/50 transition-all duration-300 group flex flex-col p-8">
+                <div className="flex-grow flex flex-col justify-between relative z-10">
                   <div>
-                    <p className="text-xs font-bold text-accent-gold uppercase tracking-widest mb-3">
-                      {new Date(dev.publishedAt).toLocaleDateString(locale)}
+                    <p className="text-xs font-bold text-accent-gold uppercase tracking-widest mb-4">
+                      {new Date(verse.publishedAt).toLocaleDateString(locale, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
                     </p>
-                    <h3 className="text-2xl font-bold text-primary-navy mb-4 font-serif leading-tight group-hover:text-accent-gold transition-colors">
-                      {isEs ? dev.title : (dev.titleEn || dev.title)}
-                    </h3>
+                    <blockquote className="text-xl md:text-2xl font-serif italic text-primary-navy mb-4 leading-snug group-hover:text-stone-700 transition-colors">
+                      &quot;{isEs ? verse.text : (verse.textEn || verse.text)}&quot;
+                    </blockquote>
                   </div>
-                  {dev.author && (
-                    <p className="text-xs text-stone-500 font-bold tracking-widest uppercase mt-4">POR {dev.author}</p>
-                  )}
+                  <p className="text-sm text-stone-500 font-bold tracking-widest uppercase mt-4">
+                    — {isEs ? verse.reference : (verse.referenceEn || verse.reference)}
+                  </p>
                 </div>
               </motion.div>
             ))}
@@ -193,8 +184,8 @@ export function ResourceLists({
             <BookOpen className="w-16 h-16 text-primary-navy/20 mx-auto mb-6 stroke-[1.5]" />
             <p className="text-stone-500 font-medium text-xl max-w-md mx-auto leading-relaxed">
               {isEs 
-                ? 'Próximamente publicaremos reflexiones diarias para fortalecer tu espíritu.' 
-                : 'Daily reflections to strengthen your spirit are coming soon.'}
+                ? 'Próximamente publicaremos versículos diarios para fortalecer tu espíritu.' 
+                : 'Daily verses to strengthen your spirit are coming soon.'}
             </p>
           </div>
         )}
