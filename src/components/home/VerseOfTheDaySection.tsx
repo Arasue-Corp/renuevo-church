@@ -23,12 +23,13 @@ export default function VerseOfTheDaySection({ locale, verse }: VerseOfTheDayPro
   const title = isEs ? 'Versículo del Día' : 'Verse of the Day';
   const text = isEs ? verse.text : (verse.textEn || verse.text);
   const reference = isEs ? verse.reference : (verse.referenceEn || verse.reference);
-  const dateStr = new Date(verse.publishedAt).toLocaleDateString(locale, { 
-    weekday: 'long', 
-    year: 'numeric', 
-    month: 'long', 
-    day: 'numeric' 
-  });
+  const getFormattedDate = (dateString: string) => {
+    const date = new Date(dateString);
+    const formatted = date.toLocaleDateString(locale, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    return formatted.charAt(0).toUpperCase() + formatted.slice(1);
+  };
+  
+  const dateStr = getFormattedDate(verse.publishedAt);
 
   return (
     <section className="py-20 px-6 bg-white relative overflow-hidden border-b border-stone-200">

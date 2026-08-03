@@ -38,8 +38,8 @@ export async function GET(request: Request) {
     // Save to Sanity
     const doc = {
       _type: 'verseOfTheDay',
-      reference: selectedVerse.ref,
-      referenceEn: selectedVerse.refEn,
+      reference: `${selectedVerse.ref} (RVR1960)`,
+      referenceEn: `${selectedVerse.refEn} (NIV)`,
       text: selectedVerse.es,
       textEn: selectedVerse.en,
       publishedAt: new Date().toISOString(),

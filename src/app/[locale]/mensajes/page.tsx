@@ -13,7 +13,7 @@ export default async function ResourcesPage({params}: {params: Promise<{locale: 
   const isEs = locale === 'es';
 
   // Fetch Verses of the Day (History)
-  const verseQuery = `*[_type == "verseOfTheDay" && publishedAt <= now()] | order(publishedAt desc)[0...12] {
+  const verseQuery = `*[_type == "verseOfTheDay" && publishedAt <= now()] | order(publishedAt desc)[0...365] {
     _id, reference, referenceEn, text, textEn, "imageUrl": featuredImage.asset->url, publishedAt
   }`;
   
