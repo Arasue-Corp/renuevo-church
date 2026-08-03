@@ -22,7 +22,10 @@ export default function VerseOfTheDaySection({ locale, verse }: VerseOfTheDayPro
 
   const title = isEs ? 'Versículo del Día' : 'Verse of the Day';
   const text = isEs ? verse.text : (verse.textEn || verse.text);
-  const reference = isEs ? verse.reference : (verse.referenceEn || verse.reference);
+  let reference = isEs ? verse.reference : (verse.referenceEn || verse.reference);
+  // Ensure the version is always displayed even for verses created before the update
+  if (isEs && !reference.includes('(RVR')) reference += ' (RVR1960)';
+  if (!isEs && !reference.includes('(NIV')) reference += ' (NIV)';
   const getFormattedDate = (dateString: string) => {
     const date = new Date(dateString);
     const formatted = date.toLocaleDateString(locale, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });

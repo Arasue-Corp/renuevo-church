@@ -237,7 +237,7 @@ export function ResourceLists({
                     </blockquote>
                   </div>
                   <p className="text-sm text-stone-500 font-bold tracking-widest uppercase mt-4">
-                    — {isEs ? verse.reference : (verse.referenceEn || verse.reference)}
+                    — {isEs ? (verse.reference.includes('(RVR') ? verse.reference : `${verse.reference} (RVR1960)`) : ((verse.referenceEn || verse.reference).includes('(NIV') ? (verse.referenceEn || verse.reference) : `${(verse.referenceEn || verse.reference)} (NIV)`)}
                   </p>
                 </div>
               </motion.div>
