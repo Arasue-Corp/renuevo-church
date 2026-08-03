@@ -47,6 +47,14 @@ export async function GET(request: Request) {
 
     const created = await client.create(doc);
 
+    // Revalidate the home page and messages page to show the new verse instantly
+    try {
+      const { revalidatePath } = require('next/cache');
+      revalidatePath('/', 'layout');
+    } catch (e) {
+      console.log('Failed to revalidate cache', e);
+    }
+
     return NextResponse.json({ 
       success: true, 
       message: 'Verse of the Day created successfully',
