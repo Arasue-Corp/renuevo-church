@@ -151,7 +151,7 @@ export default function Navbar() {
                   onMouseEnter={() => setHoveredPath(link.path as string)}
                   onMouseLeave={() => setHoveredPath(null)}
                   className={`relative px-5 py-2 text-sm font-bold tracking-wide transition-colors duration-300 flex items-center gap-2 ${
-                    isActive || isHovered ? 'text-accent-gold' : 'text-primary-navy'
+                    isActive || isHovered || link.isNew ? 'text-accent-gold' : 'text-primary-navy'
                   }`}
                 >
                   <span className="relative z-10">{link.name}</span>
@@ -274,7 +274,7 @@ export default function Navbar() {
                         href={link.path as string} 
                         onClick={() => setIsOpen(false)}
                         className={`flex items-center gap-3 text-4xl font-serif tracking-tight transition-colors ${
-                          isActive ? 'text-accent-gold font-bold' : 'text-white hover:text-stone-300'
+                          isActive || link.isNew ? 'text-accent-gold font-bold' : 'text-white hover:text-stone-300'
                         }`}
                       >
                         {link.name}
