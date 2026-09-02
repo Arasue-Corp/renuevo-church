@@ -88,15 +88,22 @@ export default function HombresDeAltarPage() {
                   <p className="text-sm text-stone-500">{locale === 'es' ? 'Apunta la fecha' : 'Save the date'}</p>
                 </div>
               </div>
-              <div className="flex items-center gap-4 text-stone-700">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary-navy/5 text-primary-navy">
+              <a 
+                href="https://maps.app.goo.gl/JdcbwqtThSHkqzVB9" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-start gap-4 text-stone-700 hover:text-primary-navy transition-colors group"
+              >
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-primary-navy/5 text-primary-navy group-hover:bg-primary-navy/10 transition-colors">
                   <MapPin className="h-6 w-6" />
                 </div>
                 <div>
-                  <p className="font-bold">Renuevo Church</p>
-                  <p className="text-sm text-stone-500">{locale === 'es' ? 'Templo' : 'Sanctuary'}</p>
+                  <p className="font-bold">Renuevo Church <span className="font-normal text-stone-500">({locale === 'es' ? 'Templo' : 'Sanctuary'})</span></p>
+                  <p className="text-sm text-stone-500 group-hover:text-stone-700 transition-colors mt-0.5">
+                    6331 W Lamar Rd, Glendale, AZ 85301
+                  </p>
                 </div>
-              </div>
+              </a>
             </div>
           </motion.div>
 
