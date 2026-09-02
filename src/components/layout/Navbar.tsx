@@ -69,9 +69,11 @@ export default function Navbar() {
             <Image 
               src="/renuevo-logo-2.png" 
               alt="Renuevo Church" 
-              width={200} 
-              height={50} 
-              className="h-8 md:h-10 w-auto object-contain" 
+              width={300} 
+              height={100} 
+              className={`w-auto object-contain drop-shadow-md transition-all duration-300 ${
+                isScrolled ? 'h-10 md:h-12' : 'h-14 md:h-16 lg:h-20'
+              }`}
               priority
             />
           </Link>
