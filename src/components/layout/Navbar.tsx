@@ -65,14 +65,14 @@ export default function Navbar() {
               : 'w-full max-w-7xl px-8 py-4 mt-2'
           }`}
         >
-          <Link href={`/${locale}`} className="relative z-20 flex items-center transition-colors duration-300 hover:opacity-80">
+          <Link href={`/${locale}`} className="relative z-20 flex items-center justify-center w-32 md:w-44 h-8 md:h-10 transition-colors duration-300 hover:opacity-80">
             <Image 
               src="/renuevo-logo-2.png" 
               alt="Renuevo Church" 
               width={300} 
               height={100} 
-              className={`w-auto object-contain drop-shadow-md transition-all duration-300 ${
-                isScrolled ? 'h-10 md:h-12' : 'h-14 md:h-16 lg:h-20'
+              className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-auto object-contain drop-shadow-md transition-all duration-300 ${
+                isScrolled ? 'h-12 md:h-14' : 'h-16 md:h-20 lg:h-24'
               }`}
               priority
             />
