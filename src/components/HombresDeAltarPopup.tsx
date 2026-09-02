@@ -7,7 +7,6 @@ import { useLocale } from 'next-intl';
 import Link from 'next/link';
 import Image from 'next/image';
 
-import logoNegro from '../../../public/hombres-altar/logo-negro.png';
 
 export default function HombresDeAltarPopup() {
   const [isVisible, setIsVisible] = useState(false);
@@ -63,8 +62,10 @@ export default function HombresDeAltarPopup() {
 
               <div className="relative w-48 mb-2 drop-shadow-sm">
                 <Image 
-                  src={logoNegro} 
+                  src="/hombres-altar/logo-negro.png" 
                   alt="Congreso de varones Hombres de Altar" 
+                  width={400}
+                  height={400}
                   className="w-full h-auto object-contain"
                 />
                 <h3 className="sr-only">
