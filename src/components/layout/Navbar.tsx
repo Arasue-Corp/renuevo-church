@@ -43,7 +43,7 @@ export default function Navbar() {
       ]
     },
     {
-      name: locale === 'es' ? 'Hombres de Altar' : 'Men\'s Congress',
+      name: locale === 'es' ? 'Congreso de varones' : 'Men\'s Congress',
       path: `/${locale}/hombres-de-altar`,
       isNew: true
     }
