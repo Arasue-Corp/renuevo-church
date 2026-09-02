@@ -5,6 +5,7 @@ import { useLocale } from 'next-intl';
 import LanguageSwitcher from '../LanguageSwitcher';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'motion/react';
 
 export default function Navbar() {
@@ -64,9 +65,15 @@ export default function Navbar() {
               : 'w-full max-w-7xl px-8 py-4 mt-2'
           }`}
         >
-          <Link href={`/${locale}`} className="relative z-20 flex items-center gap-1 transition-colors duration-300 hover:opacity-80 text-primary-navy">
-            <span className="font-serif font-bold text-2xl tracking-tighter">RENUEVO</span>
-            <span className="font-sans font-bold tracking-widest text-[10px] mt-1 text-primary-navy/80">CHURCH</span>
+          <Link href={`/${locale}`} className="relative z-20 flex items-center transition-colors duration-300 hover:opacity-80">
+            <Image 
+              src="/renuevo-logo-2.png" 
+              alt="Renuevo Church" 
+              width={200} 
+              height={50} 
+              className="h-8 md:h-10 w-auto object-contain" 
+              priority
+            />
           </Link>
           
           {/* Desktop Nav */}
