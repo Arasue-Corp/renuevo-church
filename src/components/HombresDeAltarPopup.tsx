@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, Calendar, ArrowRight } from 'lucide-react';
 import { useLocale } from 'next-intl';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function HombresDeAltarPopup() {
   const [isVisible, setIsVisible] = useState(false);
@@ -58,10 +59,18 @@ export default function HombresDeAltarPopup() {
                 {locale === 'es' ? 'Próximo Evento' : 'Upcoming Event'}
               </motion.div>
 
-              <h3 className="mb-2 font-serif text-3xl md:text-4xl font-bold leading-tight tracking-tight text-primary-navy">
-                {locale === 'es' ? 'Congreso' : "Men's"}<br/>
-                <span className="text-accent-gold">{locale === 'es' ? 'de varones' : "Congress"}</span>
-              </h3>
+              <div className="relative w-48 mb-2 drop-shadow-sm">
+                <Image 
+                  src="/hombres-altar/logo-negro.png" 
+                  alt="Congreso de varones Hombres de Altar" 
+                  width={400} 
+                  height={400} 
+                  className="w-full h-auto object-contain"
+                />
+                <h3 className="sr-only">
+                  {locale === 'es' ? 'Congreso de varones' : "Men's Congress"}
+                </h3>
+              </div>
               
               <p className="mb-6 text-sm text-stone-500">
                 {locale === 'es' 

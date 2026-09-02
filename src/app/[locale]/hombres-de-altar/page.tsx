@@ -5,6 +5,7 @@ import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { registerHombresDeAltar } from '@/app/actions/register';
 import { Calendar, MapPin, CheckCircle2, User, Hash, Church, Phone, Mail, Shirt } from 'lucide-react';
+import Image from 'next/image';
 
 export default function HombresDeAltarPage() {
   const locale = useLocale();
@@ -56,10 +57,19 @@ export default function HombresDeAltarPage() {
               {locale === 'es' ? 'Próximo Evento' : "Upcoming Event"}
             </div>
             
-            <h1 className="font-serif text-5xl md:text-7xl font-bold tracking-tight text-primary-navy leading-tight">
-              {locale === 'es' ? 'Congreso' : "Men's"} <br className="hidden md:block" /> 
-              <span className="text-accent-gold">{locale === 'es' ? 'de varones' : "Congress"}</span>
-            </h1>
+            <div className="relative w-72 md:w-96 drop-shadow-md">
+              <Image 
+                src="/hombres-altar/logo-negro.png" 
+                alt="Congreso de varones Hombres de Altar" 
+                width={800} 
+                height={800} 
+                className="w-full h-auto object-contain"
+                priority
+              />
+              <h1 className="sr-only">
+                {locale === 'es' ? 'Congreso de varones' : "Men's Congress"}
+              </h1>
+            </div>
             
             <p className="text-lg text-stone-600 leading-relaxed max-w-lg">
               {locale === 'es' 
