@@ -7,7 +7,7 @@ import { useLocale } from 'next-intl';
 import Link from 'next/link';
 import Image from 'next/image';
 
-import logoNegro from '../../public/hombres-altar/logo-negro.png';
+import logoNegro from '../../../public/hombres-altar/logo-negro.png';
 
 export default function HombresDeAltarPopup() {
   const [isVisible, setIsVisible] = useState(false);
