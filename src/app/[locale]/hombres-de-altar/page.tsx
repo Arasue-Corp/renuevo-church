@@ -7,6 +7,8 @@ import { registerHombresDeAltar } from '@/app/actions/register';
 import { Calendar, MapPin, CheckCircle2, User, Hash, Church, Phone, Mail, Shirt } from 'lucide-react';
 import Image from 'next/image';
 
+import logoNegro from '../../../../../public/hombres-altar/logo-negro.png';
+
 export default function HombresDeAltarPage() {
   const locale = useLocale();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -59,10 +61,8 @@ export default function HombresDeAltarPage() {
             
             <div className="relative w-72 md:w-96 drop-shadow-md">
               <Image 
-                src="/hombres-altar/logo-negro.png" 
+                src={logoNegro} 
                 alt="Congreso de varones Hombres de Altar" 
-                width={800} 
-                height={800} 
                 className="w-full h-auto object-contain"
                 priority
               />
