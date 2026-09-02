@@ -52,6 +52,8 @@ export const hombresDeAltarRegistrationType = defineType({
           { title: 'L', value: 'L' },
           { title: 'XL', value: 'XL' },
           { title: 'XXL', value: 'XXL' },
+          { title: '3XL', value: '3XL' },
+          { title: '4XL', value: '4XL' },
         ],
       },
       validation: (rule) => rule.required(),

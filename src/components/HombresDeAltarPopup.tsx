@@ -11,35 +11,21 @@ export default function HombresDeAltarPopup() {
   const locale = useLocale();
 
   useEffect(() => {
-    // Check if user has already closed the popup
-    const hasSeenPopup = localStorage.getItem('hombres-de-altar-popup-closed');
-    if (!hasSeenPopup) {
-      // Delay popup to not overwhelm user immediately
-      const timer = setTimeout(() => {
-        setIsVisible(true);
-      }, 2000);
-      return () => clearTimeout(timer);
-    }
+    // Delay popup to not overwhelm user immediately
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 2000);
+    return () => clearTimeout(timer);
   }, []);
 
   const closePopup = () => {
     setIsVisible(false);
-    localStorage.setItem('hombres-de-altar-popup-closed', 'true');
   };
 
   return (
     <AnimatePresence>
       {isVisible && (
         <>
-          {/* Backdrop */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[60] bg-black/40 backdrop-blur-sm"
-            onClick={closePopup}
-          />
-
           {/* Popup */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
