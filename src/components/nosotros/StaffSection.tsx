@@ -2,7 +2,7 @@
 
 import { useRef } from 'react';
 import { motion, useInView } from 'motion/react';
-import { Phone, Mail, Quote } from 'lucide-react';
+import { Phone, Quote } from 'lucide-react';
 
 interface StaffMember {
   id: string;
@@ -14,7 +14,6 @@ interface StaffMember {
   messageEs: string;
   messageEn: string;
   phone: string;
-  email: string;
   image: string;
 }
 
@@ -28,8 +27,7 @@ const staff: StaffMember[] = [
     historyEn: 'With over 20 years of ministry, Pastor Rody has dedicated his life to passionately teaching God\'s word and raising leaders in the community.',
     messageEs: '"Mi mayor anhelo es que cada persona encuentre su propósito en Cristo y experimente el amor transformador del Padre."',
     messageEn: '"My greatest desire is for every person to find their purpose in Christ and experience the Father\'s transforming love."',
-    phone: '480-555-0101',
-    email: 'rody@renuevo.cc',
+    phone: '480-440-0396',
     image: '/staff-photos/perfil-rody.png'
   },
   {
@@ -41,8 +39,7 @@ const staff: StaffMember[] = [
     historyEn: 'Sonia has been a fundamental pillar in the spiritual development of families. Her compassionate heart drives her to tirelessly serve those in need.',
     messageEs: '"Creemos en una iglesia donde todos tienen un lugar en la mesa; una verdadera familia unida por la gracia de Dios."',
     messageEn: '"We believe in a church where everyone has a seat at the table; a true family united by God\'s grace."',
-    phone: '480-555-0102',
-    email: 'sonia@renuevo.cc',
+    phone: '623-205-8838',
     image: '/staff-photos/perfil-sonia.png'
   }
 ];
@@ -103,15 +100,6 @@ const StaffCard = ({ member, isEs, index }: { member: StaffMember, isEs: boolean
               <Phone size={14} />
             </div>
             {member.phone}
-          </a>
-          <a 
-            href={`mailto:${member.email}`} 
-            className="flex items-center gap-2 text-stone-500 hover:text-accent-gold transition-colors text-sm font-bold"
-          >
-            <div className="w-8 h-8 rounded-full bg-stone-50 flex items-center justify-center group-hover:bg-accent-gold/10">
-              <Mail size={14} />
-            </div>
-            {member.email}
           </a>
         </div>
       </div>

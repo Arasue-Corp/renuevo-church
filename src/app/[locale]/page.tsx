@@ -1,6 +1,7 @@
 import { getRecentYouTubeVideos } from '@/lib/youtube';
 import { client } from '@/sanity/lib/client';
 import Hero from '@/components/home/Hero';
+import VerseOfTheDaySection from '@/components/home/VerseOfTheDaySection';
 import VisitUsSection from '@/components/home/VisitUsSection';
 import NextStepsSection from '@/components/home/NextStepsSection';
 import JesusSection from '@/components/home/JesusSection';
@@ -24,12 +25,19 @@ export default async function Home({params}: {params: Promise<{locale: string}>}
 
   // Fetch businesses for directory preview
   let businesses = [];
+  let currentVerse = null;
   try {
     businesses = await client.fetch(
       `*[_type == "business" && isApproved == true] { categories, categoriesEn }`, 
       {}, 
       { next: { revalidate: 30 } }
     );
+    
+    // Fetch current verse of the day
+    const verseQuery = `*[_type == "verseOfTheDay" && publishedAt <= now()] | order(publishedAt desc)[0] {
+      reference, referenceEn, text, textEn, "imageUrl": featuredImage.asset->url, publishedAt
+    }`;
+    currentVerse = await client.fetch(verseQuery, {}, { next: { revalidate: 60 } });
   } catch (error) {
     console.error("Error fetching businesses:", error);
   }
@@ -38,6 +46,8 @@ export default async function Home({params}: {params: Promise<{locale: string}>}
     <div className="bg-primary-sand text-primary-navy selection:bg-accent-gold selection:text-white">
       <Hero locale={locale} />
       
+      <VerseOfTheDaySection locale={locale} verse={currentVerse} />
+
       <LiveStreamSection locale={locale} />
 
       {/* Narrative Flow */}
