@@ -83,7 +83,7 @@ export default function HombresDeAltarPage() {
                 </div>
                 <div>
                   <p className="font-bold">Renuevo Church</p>
-                  <p className="text-sm text-stone-500">{locale === 'es' ? 'Auditorio Principal' : 'Main Auditorium'}</p>
+                  <p className="text-sm text-stone-500">{locale === 'es' ? 'Templo' : 'Sanctuary'}</p>
                 </div>
               </div>
             </div>
