@@ -117,8 +117,8 @@ export default function HombresDeAltarPage() {
                 </h3>
                 <p className="text-stone-600 mb-8 max-w-md">
                   {locale === 'es' 
-                    ? 'Hemos recibido tus datos correctamente. Te esperamos en el congreso.' 
-                    : 'We have received your details successfully. We look forward to seeing you at the congress.'}
+                    ? 'Hemos recibido tu registro correctamente. Prepárate para un tiempo de transformación y hermandad en la presencia de Dios. ¡Dios te bendiga!' 
+                    : 'We have successfully received your registration. Get ready for a time of transformation and brotherhood in God\'s presence. God bless you!'}
                 </p>
                 <button
                   onClick={() => setIsSuccess(false)}
