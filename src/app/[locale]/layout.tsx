@@ -16,6 +16,7 @@ export const metadata: Metadata = {
 
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
+import HombresDeAltarPopup from '@/components/HombresDeAltarPopup';
 
 export default async function RootLayout({
   children,
@@ -35,6 +36,7 @@ export default async function RootLayout({
       <body className={`${inter.variable} ${outfit.variable} font-sans antialiased bg-stone-50 text-stone-900 flex flex-col min-h-screen selection:bg-blue-600 selection:text-white`}>
         <NextIntlClientProvider messages={messages} locale={locale}>
           <Navbar />
+          <HombresDeAltarPopup />
           <main className="flex-grow">
             {children}
           </main>

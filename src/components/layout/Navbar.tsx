@@ -41,6 +41,11 @@ export default function Navbar() {
         { name: locale === 'es' ? 'Últimos Servicios' : 'Recent Services', path: `/${locale}/mensajes` },
         { name: locale === 'es' ? 'El Mensaje' : 'The Gospel', path: `/${locale}/mensaje` },
       ]
+    },
+    {
+      name: locale === 'es' ? 'Hombres de Altar' : 'Men\'s Congress',
+      path: `/${locale}/hombres-de-altar`,
+      isNew: true
     }
   ];
 
@@ -145,11 +150,17 @@ export default function Navbar() {
                   href={link.path as string} 
                   onMouseEnter={() => setHoveredPath(link.path as string)}
                   onMouseLeave={() => setHoveredPath(null)}
-                  className={`relative px-5 py-2 text-sm font-bold tracking-wide transition-colors duration-300 ${
+                  className={`relative px-5 py-2 text-sm font-bold tracking-wide transition-colors duration-300 flex items-center gap-2 ${
                     isActive || isHovered ? 'text-accent-gold' : 'text-primary-navy'
                   }`}
                 >
                   <span className="relative z-10">{link.name}</span>
+                  
+                  {link.isNew && (
+                    <span className="relative z-10 px-1.5 py-0.5 text-[9px] font-black uppercase tracking-wider text-white bg-red-500 rounded-sm shadow-sm animate-pulse">
+                      {locale === 'es' ? 'Nuevo' : 'New'}
+                    </span>
+                  )}
                   
                   {/* Hover Pill */}
                   {isHovered && (
@@ -262,11 +273,16 @@ export default function Navbar() {
                       <Link 
                         href={link.path as string} 
                         onClick={() => setIsOpen(false)}
-                        className={`block text-4xl font-serif tracking-tight transition-colors ${
+                        className={`flex items-center gap-3 text-4xl font-serif tracking-tight transition-colors ${
                           isActive ? 'text-accent-gold font-bold' : 'text-white hover:text-stone-300'
                         }`}
                       >
                         {link.name}
+                        {link.isNew && (
+                          <span className="px-2 py-1 text-xs font-sans font-black uppercase tracking-widest text-white bg-red-500 rounded-md shadow-lg animate-pulse">
+                            {locale === 'es' ? 'Nuevo' : 'New'}
+                          </span>
+                        )}
                       </Link>
                     </motion.div>
                   );
