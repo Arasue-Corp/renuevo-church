@@ -60,7 +60,7 @@ export default function HombresDeAltarPopup() {
 
               <h3 className="mb-2 font-serif text-3xl md:text-4xl font-bold leading-tight tracking-tight text-primary-navy">
                 {locale === 'es' ? 'Congreso' : "Men's"}<br/>
-                {locale === 'es' ? 'de varones' : "Congress"}
+                <span className="text-accent-gold">{locale === 'es' ? 'de varones' : "Congress"}</span>
               </h3>
               
               <p className="mb-6 text-sm text-stone-500">

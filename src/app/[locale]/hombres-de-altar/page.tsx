@@ -57,7 +57,8 @@ export default function HombresDeAltarPage() {
             </div>
             
             <h1 className="font-serif text-5xl md:text-7xl font-bold tracking-tight text-primary-navy leading-tight">
-              {locale === 'es' ? 'Congreso' : "Men's"} <br className="hidden md:block" /> {locale === 'es' ? 'de varones' : "Congress"}
+              {locale === 'es' ? 'Congreso' : "Men's"} <br className="hidden md:block" /> 
+              <span className="text-accent-gold">{locale === 'es' ? 'de varones' : "Congress"}</span>
             </h1>
             
             <p className="text-lg text-stone-600 leading-relaxed max-w-lg">
